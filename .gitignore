@@ -19,7 +19,8 @@ target/
 *.iml
 *.ipr
 
-##
+#SpringBoot#
+src/main/resources/env.properties
 
 ### NetBeans ###
 /nbproject/private/
