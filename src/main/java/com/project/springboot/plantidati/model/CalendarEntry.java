@@ -3,6 +3,7 @@ package com.project.springboot.plantidati.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Objects;
 
 // The @Entity annotation specifies that the class is an entity and is mapped to a database table.
 @Entity
@@ -187,5 +188,20 @@ public class CalendarEntry {
     public void setImage(Byte[] image) {
         this.image = image;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CalendarEntry that = (CalendarEntry) o;
+        return Objects.equals(calendar, that.calendar) &&
+                Objects.equals(entryId, that.entryId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calendar, entryId);
+    }
+
 
 }
