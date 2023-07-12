@@ -7,17 +7,18 @@ import jakarta.persistence.*;
 public class PlantFamily {
     // Vars
     @Id
-    private String plantFamilyId;
+    private int plantFamilyId;
     @Column(nullable = false)
     private String familyName;
-
+    @Column(nullable = false)
+    private String description;
 
     // Getters && Setters
-    public String getPlantFamilyId() {
+    public int getPlantFamilyId() {
         return plantFamilyId;
     }
 
-    public void setPlantFamilyId(String plantFamilyId) {
+    public void setPlantFamilyId(int plantFamilyId) {
         this.plantFamilyId = plantFamilyId;
     }
 
@@ -29,4 +30,11 @@ public class PlantFamily {
         this.familyName = familyName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

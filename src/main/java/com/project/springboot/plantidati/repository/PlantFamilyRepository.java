@@ -1,11 +1,7 @@
 package com.project.springboot.plantidati.repository;
 
 import com.project.springboot.plantidati.model.PlantFamily;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-
-@Repository
-public interface PlantFamilyRepository extends JpaRepository<PlantFamily, String> {
-
+public interface PlantFamilyRepository extends CrudRepository<PlantFamily, Integer> {
 }
