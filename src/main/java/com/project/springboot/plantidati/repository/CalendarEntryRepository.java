@@ -1,11 +1,10 @@
 package com.project.springboot.plantidati.repository;
 
-import com.project.springboot.plantidati.model.Calendar;
+import com.project.springboot.plantidati.model.CalendarEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CalendarRepository extends JpaRepository<Calendar, String> {
-
+public interface CalendarEntryRepository extends JpaRepository<CalendarEntry, String> {
 }

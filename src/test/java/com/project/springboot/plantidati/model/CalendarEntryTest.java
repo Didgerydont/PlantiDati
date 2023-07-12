@@ -24,7 +24,7 @@ class CalendarEntryTest {
         Integer growthStage = 3;
         String pestIssues = "none";
         String diseaseIssues = "none";
-        String comments = "no comments";
+        String comment = "no comments";
         Byte[] image = new Byte[0];
 
         // Set the data
@@ -41,7 +41,7 @@ class CalendarEntryTest {
         entry.setGrowthStage(growthStage);
         entry.setPestIssues(pestIssues);
         entry.setDiseaseIssues(diseaseIssues);
-        entry.setComments(comments);
+        entry.setComment(comment);
         entry.setImage(image);
 
         // Check the data
@@ -58,7 +58,7 @@ class CalendarEntryTest {
         assertEquals(growthStage, entry.getGrowthStage());
         assertEquals(pestIssues, entry.getPestIssues());
         assertEquals(diseaseIssues, entry.getDiseaseIssues());
-        assertEquals(comments, entry.getComments());
+        assertEquals(comment, entry.getComment());
         assertEquals(image, entry.getImage());
 
         // Test equals and hashCode

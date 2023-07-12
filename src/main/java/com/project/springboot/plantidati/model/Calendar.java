@@ -1,11 +1,14 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name = "Calendar")
 public class Calendar {
 
     @Id
+    @Column(name = "calendarId")
     private String calendarId;
 
     @ManyToOne
@@ -16,30 +19,39 @@ public class Calendar {
     @JoinColumn(name = "varietyId", nullable = false)
     private Variety variety;
 
-    // Getter and setter for calendarId
+    // OneToMany annotation, defining a one-to-many relationship with the CalendarEntry entity
+    @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CalendarEntry> entries;
+
     public String getCalendarId() {
-        return this.calendarId;
+        return calendarId;
     }
 
     public void setCalendarId(String calendarId) {
         this.calendarId = calendarId;
     }
 
-    // Getter and setter for user
     public RegisteredUser getUser() {
-        return this.user;
+        return user;
     }
 
     public void setUser(RegisteredUser user) {
         this.user = user;
     }
 
-    // Getter and setter for variety
     public Variety getVariety() {
-        return this.variety;
+        return variety;
     }
 
     public void setVariety(Variety variety) {
         this.variety = variety;
+    }
+
+    public List<CalendarEntry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<CalendarEntry> entries) {
+        this.entries = entries;
     }
 }

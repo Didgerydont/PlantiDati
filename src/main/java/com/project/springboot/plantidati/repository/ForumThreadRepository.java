@@ -1,7 +1,10 @@
 package com.project.springboot.plantidati.repository;
 
+import com.project.springboot.plantidati.model.ForumThread;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-public class PlantRepository {
+
+@Repository
+public interface ForumThreadRepository extends JpaRepository<ForumThread, String> {
 }

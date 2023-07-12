@@ -1,32 +1,23 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.Embeddable;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class CalendarEntryId implements Serializable {
-    private String calendar;
+
+    private String calendarId;
+
     private String entryId;
 
-    // Default Constructor
-    public CalendarEntryId() {
-    }
-
-    // Parameterized constructor
-    public CalendarEntryId(String calendar, String entryId) {
-        this.calendar = calendar;
-        this.entryId = entryId;
-    }
-
     // Getters and setters
-    public String getCalendar() {
-        return calendar;
+    public String getCalendarId() {
+        return calendarId;
     }
 
-    public void setCalendar(String calendar) {
-        this.calendar = calendar;
+    public void setCalendarId(String calendarId) {
+        this.calendarId = calendarId;
     }
 
     public String getEntryId() {
@@ -43,11 +34,11 @@ public class CalendarEntryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalendarEntryId that = (CalendarEntryId) o;
-        return Objects.equals(calendar, that.calendar) && Objects.equals(entryId, that.entryId);
+        return Objects.equals(calendarId, that.calendarId) && Objects.equals(entryId, that.entryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calendar, entryId);
+        return Objects.hash(calendarId, entryId);
     }
 }
