@@ -18,7 +18,10 @@ public class CalendarComment implements Serializable {
     private Calendar calendar;
 
     @ManyToOne
-    @JoinColumn(name = "entryId", nullable = false)
+    @JoinColumns({
+            @JoinColumn(name="calendarId", referencedColumnName="calendarId", insertable = false, updatable = false),
+            @JoinColumn(name="entryId", referencedColumnName="entryId", insertable = false, updatable = false)
+    })
     private CalendarEntry entry;
 
     @ManyToOne

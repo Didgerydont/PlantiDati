@@ -13,8 +13,12 @@ public class CalendarEntry implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "calendarId", nullable = false)
+    @JoinColumn(name = "calendarId", referencedColumnName = "calendarId", nullable = false, insertable = false, updatable = false)
     private Calendar calendar;
+
+    @Id
+    @Column(name = "calendarId")
+    private String calendarId;
 
     @Id
     @Column(name = "entryId")
@@ -64,8 +68,7 @@ public class CalendarEntry implements Serializable {
 
 
 
-    // Getter and setter methods here...
-
+    // Getter and setter methods
 
     public Calendar getCalendar() {
         return calendar;
