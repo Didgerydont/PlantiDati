@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VarietyTest {
 
     private Variety variety;
-    private PlantFamily plantFamily;
+    private Plant plant;
 
     @BeforeEach
     public void setUp() {
         variety = new Variety();
-        plantFamily = new PlantFamily();
+        plant = new Plant();
     }
 
     @Test
@@ -25,8 +25,8 @@ public class VarietyTest {
 
     @Test
     public void testGetPlantFamily() {
-        variety.setPlantFamily(plantFamily);
-        assertEquals(plantFamily, variety.getPlantFamily());
+        variety.setPlant(plant);
+        assertEquals(plant, variety.getPlant());
     }
 
     @Test

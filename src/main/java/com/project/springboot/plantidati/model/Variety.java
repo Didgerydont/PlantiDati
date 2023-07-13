@@ -17,8 +17,8 @@ public class Variety {
     // The @ManyToOne annotation is used to establish the Many-To-One relationship between Variety and PlantFamily entities.
     // The @JoinColumn annotation indicates the column for joining an entity association or element collection.
     @ManyToOne
-    @JoinColumn(name="plantFamilyId", nullable=false)
-    private PlantFamily plantFamily;
+    @JoinColumn(name="plantId", nullable=false)
+    private Plant plant;
 
     // Various @Column mappings for the fields in the Variety entity.
     @Column(name = "varietyName")
@@ -74,8 +74,8 @@ public class Variety {
         return varietyId;
     }
 
-    public PlantFamily getPlantFamily() {
-        return plantFamily;
+    public Plant getPlant() {
+        return plant;
     }
 
     public String getVarietyName() {
@@ -147,8 +147,8 @@ public class Variety {
         this.varietyId = varietyId;
     }
 
-    public void setPlantFamily(PlantFamily plantFamily) {
-        this.plantFamily = plantFamily;
+    public void setPlant(Plant plant) {
+        this.plant = plant;
     }
 
     public void setVarietyName(String varietyName) {

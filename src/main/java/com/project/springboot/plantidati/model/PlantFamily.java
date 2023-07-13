@@ -1,6 +1,7 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "PlantFamily")
@@ -8,19 +9,21 @@ public class PlantFamily {
     // Vars
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int plantFamilyId;
+    private int familyId;
+
     @Column(nullable = false)
     private String familyName;
-    @Column(nullable = false)
-    private String description;
+
+    @OneToMany(mappedBy = "plantFamily")
+    private List<Plant> plants;
 
     // Getters && Setters
-    public int getPlantFamilyId() {
-        return plantFamilyId;
+    public int getFamilyId() {
+        return familyId;
     }
 
-    public void setPlantFamilyId(int plantFamilyId) {
-        this.plantFamilyId = plantFamilyId;
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
     }
 
     public String getFamilyName() {
@@ -31,11 +34,11 @@ public class PlantFamily {
         this.familyName = familyName;
     }
 
-    public String getDescription() {
-        return description;
+    public List<Plant> getPlants() {
+        return plants;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPlants(List<Plant> plants) {
+        this.plants = plants;
     }
 }
