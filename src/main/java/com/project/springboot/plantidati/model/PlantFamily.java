@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class PlantFamily {
     // Vars
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int plantFamilyId;
     @Column(nullable = false)
     private String familyName;

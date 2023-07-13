@@ -8,21 +8,16 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "CalendarEntry")
-@IdClass(CalendarEntryId.class)
 public class CalendarEntry implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "entryId")
+    private int entryId;
+
     @ManyToOne
     @JoinColumn(name = "calendarId", referencedColumnName = "calendarId", nullable = false, insertable = false, updatable = false)
     private Calendar calendar;
-
-    @Id
-    @Column(name = "calendarId")
-    private String calendarId;
-
-    @Id
-    @Column(name = "entryId")
-    private String entryId;
 
     @Column(name = "date", nullable = false)
     private Date date;
@@ -78,11 +73,11 @@ public class CalendarEntry implements Serializable {
         this.calendar = calendar;
     }
 
-    public String getEntryId() {
+    public int getEntryId() {
         return entryId;
     }
 
-    public void setEntryId(String entryId) {
+    public void setEntryId(int entryId) {
         this.entryId = entryId;
     }
 
@@ -203,12 +198,12 @@ public class CalendarEntry implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalendarEntry that = (CalendarEntry) o;
-        return Objects.equals(calendar, that.calendar) &&
-                Objects.equals(entryId, that.entryId);
+        return entryId == that.entryId &&
+                Objects.equals(calendar, that.calendar);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calendar, entryId);
+        return Objects.hash(entryId, calendar);
     }
 }

@@ -8,7 +8,8 @@ import jakarta.persistence.*;
 public class RegisteredUser {
 
     @Id
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
 
     @Column(nullable = false)
     private String username;
@@ -28,7 +29,7 @@ public class RegisteredUser {
     private byte[] profilePic;
 
     // Getters
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -57,10 +58,6 @@ public class RegisteredUser {
     }
 
     // Setters
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

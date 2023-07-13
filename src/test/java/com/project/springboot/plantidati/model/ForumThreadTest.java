@@ -20,7 +20,7 @@ public class ForumThreadTest {
 
     @Test
     public void testGetThreadId() {
-        forumThread.setThreadId("Thread1");
+        forumThread.setThreadId(1);
         assertEquals("Thread1", forumThread.getThreadId());
     }
 

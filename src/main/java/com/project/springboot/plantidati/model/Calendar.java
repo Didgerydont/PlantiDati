@@ -8,8 +8,8 @@ import java.util.List;
 public class Calendar {
 
     @Id
-    @Column(name = "calendarId")
-    private String calendarId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int calendarId;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
@@ -23,11 +23,11 @@ public class Calendar {
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CalendarEntry> entries;
 
-    public String getCalendarId() {
+    public int getCalendarId() {
         return calendarId;
     }
 
-    public void setCalendarId(String calendarId) {
+    public void setCalendarId(int calendarId) {
         this.calendarId = calendarId;
     }
 

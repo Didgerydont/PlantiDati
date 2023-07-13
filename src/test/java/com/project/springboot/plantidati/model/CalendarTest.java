@@ -20,8 +20,8 @@ public class CalendarTest {
 
     @Test
     public void testGetCalendarId() {
-        calendar.setCalendarId("Calendar1");
-        assertEquals("Calendar1", calendar.getCalendarId());
+        calendar.setCalendarId(1);
+        assertEquals("1", calendar.getCalendarId());
     }
 
     @Test

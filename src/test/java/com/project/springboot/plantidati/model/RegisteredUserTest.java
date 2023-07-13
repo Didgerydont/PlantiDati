@@ -13,7 +13,6 @@ public class RegisteredUserTest {
     @BeforeEach
     void setUp() {
         user = new RegisteredUser();
-        user.setUserId("User1");
         user.setUsername("TestUsername");
         user.setEmail("test@example.com");
         user.setPassword("TestPassword");

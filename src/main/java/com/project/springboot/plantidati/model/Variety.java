@@ -11,8 +11,8 @@ public class Variety {
     // The @Id annotation specifies the primary key of the entity.
     // The @Column annotation specifies the details of the column to which a field or property will be mapped.
     @Id
-    @Column(name = "varietyId")
-    private String varietyId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int varietyId;
 
     // The @ManyToOne annotation is used to establish the Many-To-One relationship between Variety and PlantFamily entities.
     // The @JoinColumn annotation indicates the column for joining an entity association or element collection.
@@ -70,7 +70,7 @@ public class Variety {
     private Integer ripeningStage;
 
     // Getters
-    public String getVarietyId() {
+    public int getVarietyId() {
         return varietyId;
     }
 
@@ -143,7 +143,7 @@ public class Variety {
     }
 
     // Setters
-    public void setVarietyId(String varietyId) {
+    public void setVarietyId(int varietyId) {
         this.varietyId = varietyId;
     }
 

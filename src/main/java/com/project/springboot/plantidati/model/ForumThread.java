@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class ForumThread {
 
     @Id
-    @Column(name = "threadId")
-    private String threadId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int threadId;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
@@ -26,11 +26,11 @@ public class ForumThread {
     private LocalDateTime datePosted;
 
     // Getter and setter for threadId
-    public String getThreadId() {
+    public int getThreadId() {
         return this.threadId;
     }
 
-    public void setThreadId(String threadId) {
+    public void setThreadId(int threadId) {
         this.threadId = threadId;
     }
 

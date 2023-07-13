@@ -21,9 +21,9 @@ class CalendarCommentTest {
         entry = new CalendarEntry();
         user = new RegisteredUser();
 
-        calendar.setCalendarId("calendarId1");
-        entry.setEntryId("entryId1");
-        user.setUserId("userId1");
+        calendar.setCalendarId(1);
+        entry.setEntryId(1);
+
     }
 
     @Test

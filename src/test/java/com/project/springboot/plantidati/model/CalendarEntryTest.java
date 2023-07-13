@@ -12,7 +12,7 @@ class CalendarEntryTest {
 
         // Mock data
         Calendar calendar = new Calendar(); // replace with a real instance
-        String entryId = "entry1";
+        int entryId = 1;
         Date date = new Date(System.currentTimeMillis());
         Integer dayTemp = 25;
         Integer nightTemp = 15;

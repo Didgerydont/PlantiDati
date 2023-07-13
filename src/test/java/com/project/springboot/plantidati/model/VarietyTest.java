@@ -19,7 +19,7 @@ public class VarietyTest {
 
     @Test
     public void testGetVarietyId() {
-        variety.setVarietyId("Variety1");
+        variety.setVarietyId(1);
         assertEquals("Variety1", variety.getVarietyId());
     }
 
