@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ForumThreadRepository extends JpaRepository<ForumThread, String> {
+public interface ForumThreadRepository extends JpaRepository<ForumThread, Integer> {
 }

@@ -22,8 +22,8 @@ class CalendarEntryTest {
         Integer width = 100;
         Float yield = 12.5f;
         Integer growthStage = 3;
-        String pestIssues = "none";
-        String diseaseIssues = "none";
+        boolean pestIssues = false;
+        boolean diseaseIssues = true;
         String comment = "no comments";
         Byte[] image = new Byte[0];
 

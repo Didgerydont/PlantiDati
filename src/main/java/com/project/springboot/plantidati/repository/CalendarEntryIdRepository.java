@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CalendarEntryIdRepository extends JpaRepository<CalendarEntry, String> {
+public interface CalendarEntryIdRepository extends JpaRepository<CalendarEntry, Integer> {
 }

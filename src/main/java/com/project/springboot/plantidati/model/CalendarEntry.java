@@ -47,13 +47,26 @@ public class CalendarEntry implements Serializable {
     private Integer growthStage;
 
     @Column(name = "pestIssues")
-    private String pestIssues;
+    private boolean pestIssues;
+
+    @Column(name = "pestImpact")
+    private int pestImpact;
 
     @Column(name = "diseaseIssues")
-    private String diseaseIssues;
+    private boolean diseaseIssues;
+
+    @Column(name = "diseaseImpact")
+    private int diseaseImpact;
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "lightAmount")
+    private int lightAmount;
+
+    @Column(name = "harvested")
+    private boolean harvested;
+
 
     @Column(name = "image")
     private Byte[] image;
@@ -99,6 +112,38 @@ public class CalendarEntry implements Serializable {
 
     public Integer getNightTemp() {
         return nightTemp;
+    }
+
+    public int getPestImpact() {
+        return pestImpact;
+    }
+
+    public void setPestImpact(int pestImpact) {
+        this.pestImpact = pestImpact;
+    }
+
+    public int getDiseaseImpact() {
+        return diseaseImpact;
+    }
+
+    public void setDiseaseImpact(int diseaseImpact) {
+        this.diseaseImpact = diseaseImpact;
+    }
+
+    public int getLightAmount() {
+        return lightAmount;
+    }
+
+    public void setLightAmount(int lightAmount) {
+        this.lightAmount = lightAmount;
+    }
+
+    public boolean isHarvested() {
+        return harvested;
+    }
+
+    public void setHarvested(boolean harvested) {
+        this.harvested = harvested;
     }
 
     public void setNightTemp(Integer nightTemp) {
@@ -153,19 +198,19 @@ public class CalendarEntry implements Serializable {
         this.growthStage = growthStage;
     }
 
-    public String getPestIssues() {
+    public Boolean getPestIssues() {
         return pestIssues;
     }
 
-    public void setPestIssues(String pestIssues) {
+    public void setPestIssues(Boolean pestIssues) {
         this.pestIssues = pestIssues;
     }
 
-    public String getDiseaseIssues() {
+    public Boolean getDiseaseIssues() {
         return diseaseIssues;
     }
 
-    public void setDiseaseIssues(String diseaseIssues) {
+    public void setDiseaseIssues(Boolean diseaseIssues) {
         this.diseaseIssues = diseaseIssues;
     }
 

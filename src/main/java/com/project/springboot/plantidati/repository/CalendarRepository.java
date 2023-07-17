@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CalendarRepository extends JpaRepository<Calendar, String> {
+public interface CalendarRepository extends JpaRepository<Calendar, Integer> {
 
 }
