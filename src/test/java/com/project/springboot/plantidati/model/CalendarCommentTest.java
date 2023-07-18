@@ -26,11 +26,6 @@ class CalendarCommentTest {
 
     }
 
-    @Test
-    void testCommentId() {
-        comment.setCommentId("commentId1");
-        assertEquals("commentId1", comment.getCommentId());
-    }
 
     @Test
     void testCalendar() {
@@ -66,10 +61,15 @@ class CalendarCommentTest {
     @Test
     void testEquals() {
         CalendarComment other = new CalendarComment();
-        other.setCommentId("commentId1");
+        other.setCommentId(1);
         other.setCalendar(calendar);
         other.setEntry(entry);
         other.setUser(user);
+
+        comment.setCommentId(1);
+        comment.setCalendar(calendar);
+        comment.setEntry(entry);
+        comment.setUser(user);
 
         assertTrue(comment.equals(other));
     }

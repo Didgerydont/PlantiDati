@@ -23,7 +23,7 @@ public class RegisteredUserTest {
 
     @Test
     void getUserId() {
-        assertEquals("User1", user.getUserId());
+        assertEquals(0, user.getUserId());
     }
 
     @Test

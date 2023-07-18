@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class ForumThreadTest {
 
     private ForumThread forumThread;
@@ -21,7 +22,7 @@ public class ForumThreadTest {
     @Test
     public void testGetThreadId() {
         forumThread.setThreadId(1);
-        assertEquals("Thread1", forumThread.getThreadId());
+        assertEquals(1, forumThread.getThreadId());
     }
 
     @Test

@@ -21,7 +21,7 @@ public class CalendarTest {
     @Test
     public void testGetCalendarId() {
         calendar.setCalendarId(1);
-        assertEquals("1", calendar.getCalendarId());
+        assertEquals(1, calendar.getCalendarId());
     }
 
     @Test

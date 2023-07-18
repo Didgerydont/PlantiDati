@@ -37,7 +37,7 @@ public class Variety {
     private Float varietyYield;
 
     @Column(name = "growthRate")
-    private Integer growthRate;
+    private double growthRate;
 
     @Column(name = "wateringRequirement")
     private Integer wateringRequirement;
@@ -98,7 +98,7 @@ public class Variety {
         return varietyYield;
     }
 
-    public Integer getGrowthRate() {
+    public double getGrowthRate() {
         return growthRate;
     }
 

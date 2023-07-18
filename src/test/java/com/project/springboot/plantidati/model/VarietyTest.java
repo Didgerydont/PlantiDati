@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 // not testing all due to size of the entity
 public class VarietyTest {
 
@@ -20,7 +21,7 @@ public class VarietyTest {
     @Test
     public void testGetVarietyId() {
         variety.setVarietyId(1);
-        assertEquals("Variety1", variety.getVarietyId());
+        assertEquals(1, variety.getVarietyId());
     }
 
     @Test

@@ -23,7 +23,7 @@ public class ForumCommentTest {
     @Test
     public void testGetCommentId() {
         forumComment.setCommentId(1);
-        assertEquals("Comment1", forumComment.getCommentId());
+        assertEquals(1, forumComment.getCommentId());
     }
 
     @Test

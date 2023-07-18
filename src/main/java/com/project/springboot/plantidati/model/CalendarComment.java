@@ -11,7 +11,7 @@ public class CalendarComment implements Serializable {
 
     @Id
     @Column(name = "commentId")
-    private String commentId;
+    private int commentId;
 
     @ManyToOne
     @JoinColumn(name = "calendarId", nullable = false)
@@ -34,11 +34,11 @@ public class CalendarComment implements Serializable {
     @Column(name = "datePosted", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datePosted;
 
-    public String getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(String commentId) {
+    public void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 
@@ -87,11 +87,12 @@ public class CalendarComment implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalendarComment that = (CalendarComment) o;
-        return commentId.equals(that.commentId) &&
+        return commentId == that.commentId &&
                 calendar.equals(that.calendar) &&
                 entry.equals(that.entry) &&
                 user.equals(that.user);
     }
+
 
     @Override
     public int hashCode() {
