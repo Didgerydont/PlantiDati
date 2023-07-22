@@ -1,7 +1,6 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
-import org.jasypt.util.password.StrongPasswordEncryptor;
 
 
 @Entity
@@ -27,6 +26,7 @@ public class RegisteredUser {
     private String profileCaption;
 
     @Lob
+    @Column
     private byte[] profilePic;
 
     // Getters
@@ -68,9 +68,7 @@ public class RegisteredUser {
     }
 
     public void setPassword(String password) {
-        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-        String encryptedPassword = passwordEncryptor.encryptPassword(password);
-        this.password = encryptedPassword;
+        this.password = password;
     }
 
     public void setLocation(String location) {
