@@ -1,4 +1,4 @@
-package com.project.springboot.plantidati.rest;
+package com.project.springboot.plantidati.controllers;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;

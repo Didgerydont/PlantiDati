@@ -1,4 +1,4 @@
-package com.project.springboot.plantidati.rest;
+package com.project.springboot.plantidati.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

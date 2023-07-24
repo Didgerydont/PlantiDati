@@ -1,5 +1,6 @@
 package com.project.springboot.plantidati.service;
 
+import com.project.springboot.plantidati.exception.UsernameAlreadyExistsException;
 import com.project.springboot.plantidati.model.RegisteredUser;
 import com.project.springboot.plantidati.repository.RegisteredUserRepository;
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -22,6 +23,10 @@ public class RegisteredUserService {
 
     // Encrypt Password with Jaspyt
     public RegisteredUser registerNewUser(String username, String email, String password, String location, String profileCaption) {
+        Optional<RegisteredUser> existingUser = registeredUserRepository.findByUsername(username);
+        if (existingUser.isPresent()) {
+            throw new UsernameAlreadyExistsException("Username is already taken.");
+        }
         String encryptedPassword = strongEncryptor.encryptPassword(password);
         RegisteredUser newUser = new RegisteredUser();
         newUser.setUsername(username);

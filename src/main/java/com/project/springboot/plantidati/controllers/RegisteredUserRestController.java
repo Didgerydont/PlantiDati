@@ -1,4 +1,4 @@
-package com.project.springboot.plantidati.rest;
+package com.project.springboot.plantidati.controllers;
 
 import com.project.springboot.plantidati.model.RegisteredUser;
 import com.project.springboot.plantidati.service.RegisteredUserService;
@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -19,12 +21,19 @@ public class RegisteredUserRestController {
     }
 
     // Method to handle HTTP POST requests for user registration.
-    @PostMapping("/register")
+    @PostMapping(value = "/register", consumes = "application/json")
     public ResponseEntity<RegisteredUser> registerNewUser(@Valid @RequestBody RegisteredUser newUser) {
         // Calls the service method to register a new user and stores the returned RegisteredUser object.
         RegisteredUser savedUser = registeredUserService.registerNewUser(newUser.getUsername(), newUser.getEmail(), newUser.getPassword(), newUser.getLocation(), newUser.getProfileCaption());
         // Returns the saved user in the response entity with an HTTP status of CREATED (201).
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    // Check if username is already taken, use JS to advise the client in the form if this is the case.
+    @GetMapping("/isusernametaken")
+    public ResponseEntity<Boolean> isUsernameTaken(@RequestParam String username) {
+        Optional<RegisteredUser> existingUser = registeredUserService.findUserByUsername(username);
+        return new ResponseEntity<>(existingUser.isPresent(), HttpStatus.OK);
     }
 
 

@@ -6,33 +6,35 @@
 
 <div class="container mt-5">
   <h1>Register</h1>
-  <form th:action="@{/register}" th:object="${user}" method="post">
-    <div class="mb-3">
-      <label class="form-label">Username</label>
-      <input type="text" class="form-control" th:field="*{username}"/>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Email address</label>
-      <input type="email" class="form-control" th:field="*{email}"/>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Password</label>
-      <input type="password" class="form-control" th:field="*{password}"/>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Location</label>
-      <input type="text" class="form-control" th:field="*{location}"/>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Profile Caption</label>
-      <textarea class="form-control" th:field="*{profileCaption}"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form id="registerForm" method="post" onsubmit="event.preventDefault();">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input id="username" type="text" class="form-control" required/>
+            <span id="usernameError" class="text-danger" style="display: none;">Username is already taken</span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input id="email" type="email" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input id="password" type="password" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input id="location" type="text" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Profile Caption</label>
+            <textarea id="profileCaption" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
 
 <!-- Footer -->
 <div th:replace="~{fragments :: thefooter}"></div>
+<script th:src="@{/scripts/user_registration.js}"></script>
 </body>
 </html>

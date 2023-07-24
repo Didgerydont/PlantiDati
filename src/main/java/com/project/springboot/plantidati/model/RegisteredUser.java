@@ -10,28 +10,30 @@ public class RegisteredUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_Id")
     private int userId;
 
-    @Column(nullable = false)
+    @Column(name = "username", nullable = false)
     @NotBlank(message = "Username cannot be blank")
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     @NotBlank(message = "Email cannot be blank")
     private String email;
 
     @NotBlank(message = "Password must be created")
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @NotBlank(message = "Location cannot be blank.")
+    @Column(name = "location")
     private String location;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "profile_caption", columnDefinition = "TEXT")
     private String profileCaption;
 
     @Lob
-    @Column
+    @Column(name = "profile_pic")
     private byte[] profilePic;
 
     // Getters

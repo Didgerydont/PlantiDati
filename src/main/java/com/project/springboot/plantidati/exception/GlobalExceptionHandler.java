@@ -41,4 +41,11 @@ public class GlobalExceptionHandler {
         // Send a JSON Response so that we can display the error on the client side.
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    // Username already exists exception
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ResponseEntity<String> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
+
