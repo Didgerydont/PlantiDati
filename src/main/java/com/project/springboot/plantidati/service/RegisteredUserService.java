@@ -6,6 +6,8 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RegisteredUserService {
 
@@ -31,13 +33,13 @@ public class RegisteredUserService {
     }
 
     public boolean checkUserCredentials(String username, String password) {
-        RegisteredUser user = registeredUserRepository.findByUsername(username);
-        if (user == null) {
+        Optional<RegisteredUser> optionalUser = registeredUserRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
             return false;
         }
+        RegisteredUser user = optionalUser.get();
         return strongEncryptor.checkPassword(password, user.getPassword());
     }
-
     public RegisteredUser setUserName(RegisteredUser user, String newUsername) {
         user.setUsername(newUsername);
         return registeredUserRepository.save(user);
@@ -70,7 +72,13 @@ public class RegisteredUserService {
         return registeredUserRepository.save(user);
     }
 
+    public RegisteredUser findUserById(int userId) {
+        return registeredUserRepository.findById(userId).orElse(null);
+    }
 
+    public Optional<RegisteredUser> findUserByUsername(String username) {
+        return registeredUserRepository.findByUsername(username);
+    }
 
 }
 

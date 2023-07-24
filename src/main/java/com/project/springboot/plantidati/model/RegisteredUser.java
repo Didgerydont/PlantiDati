@@ -1,6 +1,7 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
@@ -12,14 +13,18 @@ public class RegisteredUser {
     private int userId;
 
     @Column(nullable = false)
+    @NotBlank(message = "Username cannot be blank")
     private String username;
 
     @Column(nullable = false)
+    @NotBlank(message = "Email cannot be blank")
     private String email;
 
+    @NotBlank(message = "Password must be created")
     @Column(nullable = false)
     private String password;
 
+    @NotBlank(message = "Location cannot be blank.")
     private String location;
 
     @Column(columnDefinition = "TEXT")
