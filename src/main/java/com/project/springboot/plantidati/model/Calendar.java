@@ -9,14 +9,15 @@ public class Calendar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "calendar_Id")
     private int calendarId;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_Id", nullable = false)
     private RegisteredUser user;
 
     @ManyToOne
-    @JoinColumn(name = "varietyId", nullable = false)
+    @JoinColumn(name = "variety_Id", nullable = false)
     private Variety variety;
 
     // OneToMany annotation, defining a one-to-many relationship with the CalendarEntry entity

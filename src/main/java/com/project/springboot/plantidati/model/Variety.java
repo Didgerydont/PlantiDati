@@ -2,72 +2,67 @@ package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
 
-// The @Entity annotation specifies that the class is an entity and is mapped to a database table.
 @Entity
-// The @Table annotation specifies the name of the database table to be used for mapping.
 @Table(name = "Variety")
 public class Variety {
 
-    // The @Id annotation specifies the primary key of the entity.
-    // The @Column annotation specifies the details of the column to which a field or property will be mapped.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "variety_Id")
     private int varietyId;
 
-    // The @ManyToOne annotation is used to establish the Many-To-One relationship between Variety and PlantFamily entities.
-    // The @JoinColumn annotation indicates the column for joining an entity association or element collection.
     @ManyToOne
-    @JoinColumn(name="plantId", nullable=false)
+    @JoinColumn(name="plant_Id", nullable=false)
     private Plant plant;
 
-    // Various @Column mappings for the fields in the Variety entity.
-    @Column(name = "varietyName")
+    @Column(name = "variety_name")
     private String varietyName;
 
-    @Column(name = "varietyDescription")
+    @Column(name = "variety_description")
     private String varietyDescription;
 
-    @Column(name = "varietyHeight")
+    @Column(name = "variety_height")
     private Integer varietyHeight;
 
-    @Column(name = "varietyWidth")
+    @Column(name = "variety_width")
     private Integer varietyWidth;
 
-    @Column(name = "varietyYield")
+    @Column(name = "variety_yield")
     private Float varietyYield;
 
-    @Column(name = "growthRate")
+    @Column(name = "growth_rate")
     private double growthRate;
 
-    @Column(name = "wateringRequirement")
+    @Column(name = "watering_requirement")
     private Integer wateringRequirement;
 
-    @Column(name = "fertilizingRequirement")
+    @Column(name = "fertilizing_requirement")
     private Integer fertilizingRequirement;
 
-    @Column(name = "lightRequirement")
+    @Column(name = "light_requirement")
     private Integer lightRequirement;
 
-    @Column(name = "pestResistance")
+    @Column(name = "pest_resistance")
     private Integer pestResistance;
 
-    @Column(name = "diseaseResistance")
+    @Column(name = "disease_resistance")
     private Integer diseaseResistance;
 
-    @Column(name = "germinationPhase")
+    @Column(name = "germination_phase")
     private Integer germinationPhase;
 
-    @Column(name = "vegetativeStage")
+    @Column(name = "vegetative_stage")
     private Integer vegetativeStage;
 
-    @Column(name = "buddingStage")
+    @Column(name = "budding_stage")
     private Integer buddingStage;
 
-    @Column(name = "floweringStage")
+    @Column(name = "flowering_stage")
     private Integer floweringStage;
 
-    @Column(name = "ripeningStage")
+    @Column(name = "ripening_stage")
     private Integer ripeningStage;
+
 
     // Getters
     public int getVarietyId() {

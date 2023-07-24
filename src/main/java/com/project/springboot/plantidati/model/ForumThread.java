@@ -10,10 +10,11 @@ public class ForumThread {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "thread_Id")
     private int threadId;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_Id", nullable = false)
     private RegisteredUser user;
 
     @Column(name = "title")
@@ -22,7 +23,7 @@ public class ForumThread {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "datePosted")
+    @Column(name = "date_posted")
     private LocalDateTime datePosted;
 
     // Getter and setter for threadId

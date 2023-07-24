@@ -6,12 +6,13 @@ import java.util.List;
 @Entity
 @Table(name = "PlantFamily")
 public class PlantFamily {
-    // Vars
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "plant_family_Id")
     private int familyId;
 
-    @Column(nullable = false)
+    @Column(name = "family_Name", nullable = false)
     private String familyName;
 
     @OneToMany(mappedBy = "plantFamily")

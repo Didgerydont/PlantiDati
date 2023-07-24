@@ -10,20 +10,21 @@ public class ForumComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_Id")
     private int commentId;
 
     @ManyToOne
-    @JoinColumn(name = "threadId", nullable = false)
+    @JoinColumn(name = "thread_Id", nullable = false)
     private ForumThread thread;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_Id", nullable = false)
     private RegisteredUser user;
 
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "datePosted")
+    @Column(name = "date_posted")
     private LocalDateTime datePosted;
 
     // Getter and setter for commentId

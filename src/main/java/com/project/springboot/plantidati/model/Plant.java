@@ -5,16 +5,16 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Plant")
 public class Plant {
-    // Vars
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "plant_Id")
     private int plantId;
 
-    @Column(nullable = false)
+    @Column(name = "plant_name", nullable = false)
     private String plantName;
 
     @ManyToOne
-    @JoinColumn(name = "familyId", nullable = false)
+    @JoinColumn(name = "plant_family_Id", nullable = false)
     private PlantFamily plantFamily;
 
     // Getters && Setters

@@ -12,26 +12,26 @@ public class CalendarEntry implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "entryId")
+    @Column(name = "entry_Id")
     private int entryId;
 
     @ManyToOne
-    @JoinColumn(name = "calendarId", referencedColumnName = "calendarId", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "calendar_Id", referencedColumnName = "calendar_Id", nullable = false)
     private Calendar calendar;
 
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name = "dayTemp")
+    @Column(name = "day_temp")
     private Integer dayTemp;
 
-    @Column(name = "nightTemp")
+    @Column(name = "night_temp")
     private Integer nightTemp;
 
-    @Column(name = "waterAmount")
+    @Column(name = "water_amount")
     private Float waterAmount;
 
-    @Column(name = "nutrientAmount")
+    @Column(name = "nutrient_amount")
     private Float nutrientAmount;
 
     @Column(name = "height")
@@ -40,40 +40,38 @@ public class CalendarEntry implements Serializable {
     @Column(name = "width")
     private Integer width;
 
-    @Column(name = "yield")
-    private Float yield;
-
-    @Column(name = "growthStage")
+    @Column(name = "growth_stage")
     private Integer growthStage;
 
-    @Column(name = "pestIssues")
+    @Column(name = "pest_issues")
     private boolean pestIssues;
 
-    @Column(name = "pestImpact")
+    @Column(name = "pest_impact")
     private int pestImpact;
 
-    @Column(name = "diseaseIssues")
+    @Column(name = "disease_issues")
     private boolean diseaseIssues;
 
-    @Column(name = "diseaseImpact")
+    @Column(name = "disease_impact")
     private int diseaseImpact;
 
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "lightAmount")
+    @Column(name = "light_amount")
     private int lightAmount;
 
     @Column(name = "harvested")
     private boolean harvested;
 
+    @Column(name = "yield")
+    private Float yield;
 
     @Column(name = "image")
     private Byte[] image;
 
     @OneToMany(mappedBy = "entry")
     private List<CalendarComment> comments;
-
 
 
     // Getter and setter methods

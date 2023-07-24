@@ -10,30 +10,30 @@ import java.util.Objects;
 public class CalendarComment implements Serializable {
 
     @Id
-    @Column(name = "commentId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_Id")
     private int commentId;
 
     @ManyToOne
-    @JoinColumn(name = "calendarId", nullable = false)
+    @JoinColumn(name = "calendar_Id", nullable = false)
     private Calendar calendar;
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name="calendarId", referencedColumnName="calendarId", insertable = false, updatable = false),
-            @JoinColumn(name="entryId", referencedColumnName="entryId", insertable = false, updatable = false)
+            @JoinColumn(name="calendar_Id", referencedColumnName="calendar_Id", insertable = false, updatable = false),
+            @JoinColumn(name="entry_Id", referencedColumnName="entry_Id", insertable = false, updatable = false)
     })
     private CalendarEntry entry;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_Id", nullable = false)
     private RegisteredUser user;
 
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "datePosted", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "date_posted", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datePosted;
-
     public int getCommentId() {
         return commentId;
     }
