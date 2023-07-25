@@ -5,7 +5,7 @@
 <div th:replace="~{fragments :: theNavbar}"></div>
 
 <div class="container mt-5">
-  <h1>Register</h1>
+    <h1>Register</h1>
     <form id="registerForm" method="post" onsubmit="event.preventDefault();">
         <div class="mb-3">
             <label class="form-label">Username</label>
@@ -19,6 +19,10 @@
         <div class="mb-3">
             <label class="form-label">Password</label>
             <input id="password" type="password" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input id="confirmPassword" type="password" class="form-control" required/>
         </div>
         <div class="mb-3">
             <label class="form-label">Location</label>

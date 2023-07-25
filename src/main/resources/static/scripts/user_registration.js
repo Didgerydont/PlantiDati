@@ -1,3 +1,4 @@
+// Registration form management
 document.getElementById('registerForm').addEventListener('submit', function(event) {
     // Prevent the form from being submitted normally
     event.preventDefault();
@@ -52,7 +53,7 @@ document.getElementById('username').addEventListener('input', function(event) {
 
     var username = event.target.value;
 
-    // Set a new timeout to perform the username check after the user stops typing for 500 ms)
+    // Set a new timeout to perform the username check after the user stops typing for 500 ms
     usernameCheckTimeout = setTimeout(function() {
         fetch('/users/isusernametaken?username=' + username)
             .then(function(response) {
@@ -81,3 +82,17 @@ document.getElementById('username').addEventListener('input', function(event) {
             });
     }, 500);
 });
+
+// Check that passwords match
+function validatePasswords() {
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return false;
+    }
+
+    return true;
+}
+

@@ -18,12 +18,12 @@
 		<spring-cloud-azure.version>5.2.0</spring-cloud-azure.version>
 	</properties>
 	<dependencies>
-		<!-- Set a password on the actuator functions
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

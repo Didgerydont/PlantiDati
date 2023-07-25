@@ -1,0 +1,22 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments :: thehead}"></head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments :: theNavbar}"></div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-success" role="alert">
+                Successfully logged out.
+            </div>
+            <div class="d-grid gap-2">
+                <a href="/login" class="btn btn-primary">Log in again</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<div th:replace="~{fragments :: thefooter}"></div>
+</body>
+</html>

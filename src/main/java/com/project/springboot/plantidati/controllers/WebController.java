@@ -25,9 +25,10 @@ public class WebController {
         return "registrationSuccess";
     }
 
-    @GetMapping(value = "/login")
-    public String loginPage(Model model) {
-        return "login";
+
+    @GetMapping(value = "/logout")
+    public String logout() {
+        return "logout";
     }
 
 
