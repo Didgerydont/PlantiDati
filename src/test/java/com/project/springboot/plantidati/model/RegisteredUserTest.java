@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegisteredUserTest {
-    private RegisteredUser user;
+    private User user;
     private final byte[] profilePic = "Test".getBytes();
 
     @BeforeEach
     void setUp() {
-        user = new RegisteredUser();
+        user = new User();
         user.setUsername("TestUsername");
         user.setEmail("test@example.com");
         user.setPassword("TestPassword");

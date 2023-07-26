@@ -1,6 +1,7 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -20,20 +21,21 @@ public class CalendarComment implements Serializable {
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name="calendar_Id", referencedColumnName="calendar_Id", insertable = false, updatable = false),
-            @JoinColumn(name="entry_Id", referencedColumnName="entry_Id", insertable = false, updatable = false)
+            @JoinColumn(name = "calendar_Id", referencedColumnName = "calendar_Id", insertable = false, updatable = false),
+            @JoinColumn(name = "entry_Id", referencedColumnName = "entry_Id", insertable = false, updatable = false)
     })
     private CalendarEntry entry;
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
-    private RegisteredUser user;
+    private User user;
 
     @Column(name = "comment")
     private String comment;
 
     @Column(name = "date_posted", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datePosted;
+
     public int getCommentId() {
         return commentId;
     }
@@ -58,11 +60,11 @@ public class CalendarComment implements Serializable {
         this.entry = entry;
     }
 
-    public RegisteredUser getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(RegisteredUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

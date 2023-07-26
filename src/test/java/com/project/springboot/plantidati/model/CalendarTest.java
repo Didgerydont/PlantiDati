@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CalendarTest {
 
     private Calendar calendar;
-    private RegisteredUser user;
+    private User user;
     private Variety variety;
 
     @BeforeEach
     public void setUp() {
         calendar = new Calendar();
-        user = new RegisteredUser();
+        user = new User();
         variety = new Variety();
     }
 

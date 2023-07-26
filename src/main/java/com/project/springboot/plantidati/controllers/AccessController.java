@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 // The @Controller annotation indicates that this class serves as a web controller in the MVC pattern
 @Controller
-public class UserController {
+public class AccessController {
 
     // The @GetMapping("/**") annotation maps all HTTP GET requests to the defaultPage() method
     @GetMapping("/**")

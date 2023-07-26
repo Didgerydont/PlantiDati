@@ -2,11 +2,17 @@ package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 
 @Entity
-@Table(name = "RegisteredUser")
-public class RegisteredUser {
+@Table(name = "User")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +42,41 @@ public class RegisteredUser {
     @Column(name = "profile_pic")
     private byte[] profilePic;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    // UserDetails overrides
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+
     // Getters
     public int getUserId() {
         return userId;
@@ -47,10 +88,6 @@ public class RegisteredUser {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getLocation() {
@@ -89,4 +126,6 @@ public class RegisteredUser {
     public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
     }
+
+
 }

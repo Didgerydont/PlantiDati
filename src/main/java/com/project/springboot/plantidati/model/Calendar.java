@@ -1,6 +1,7 @@
 package com.project.springboot.plantidati.model;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Calendar {
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
-    private RegisteredUser user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "variety_Id", nullable = false)
@@ -32,11 +33,11 @@ public class Calendar {
         this.calendarId = calendarId;
     }
 
-    public RegisteredUser getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(RegisteredUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

@@ -2,6 +2,7 @@ package com.project.springboot.plantidati.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,14 +13,14 @@ class CalendarCommentTest {
     private CalendarComment comment;
     private Calendar calendar;
     private CalendarEntry entry;
-    private RegisteredUser user;
+    private User user;
 
     @BeforeEach
     void setUp() {
         comment = new CalendarComment();
         calendar = new Calendar();
         entry = new CalendarEntry();
-        user = new RegisteredUser();
+        user = new User();
 
         calendar.setCalendarId(1);
         entry.setEntryId(1);

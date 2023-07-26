@@ -15,7 +15,7 @@ public class ForumThread {
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
-    private RegisteredUser user;
+    private User user;
 
     @Column(name = "title")
     private String title;
@@ -36,11 +36,11 @@ public class ForumThread {
     }
 
     // Getter and setter for user
-    public RegisteredUser getUser() {
+    public User getUser() {
         return this.user;
     }
 
-    public void setUser(RegisteredUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

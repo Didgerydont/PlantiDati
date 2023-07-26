@@ -19,7 +19,7 @@ public class ForumComment {
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
-    private RegisteredUser user;
+    private User user;
 
     @Column(name = "comment")
     private String comment;
@@ -46,11 +46,11 @@ public class ForumComment {
     }
 
     // Getter and setter for user
-    public RegisteredUser getUser() {
+    public User getUser() {
         return this.user;
     }
 
-    public void setUser(RegisteredUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

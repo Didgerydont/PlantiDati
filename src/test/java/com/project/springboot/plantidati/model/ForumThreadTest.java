@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ForumThreadTest {
 
     private ForumThread forumThread;
-    private RegisteredUser user;
+    private User user;
 
     @BeforeEach
     public void setUp() {
         forumThread = new ForumThread();
-        user = new RegisteredUser();
+        user = new User();
     }
 
     @Test

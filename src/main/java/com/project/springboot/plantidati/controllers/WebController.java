@@ -1,6 +1,6 @@
 package com.project.springboot.plantidati.controllers;
 
-import com.project.springboot.plantidati.model.RegisteredUser;
+import com.project.springboot.plantidati.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class WebController {
 
     @GetMapping(value = "/registrationpage")
     public String registrationPage(Model model) {
-        model.addAttribute("user", new RegisteredUser());
+        model.addAttribute("user", new User());
         return "registrationpage";
     }
 
@@ -31,5 +31,9 @@ public class WebController {
         return "logout";
     }
 
+    @RequestMapping(value = "/profile")
+    public String profile() {
+        return "profile";
+    }
 
 }

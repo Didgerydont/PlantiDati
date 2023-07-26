@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ForumCommentTest {
 
     private ForumComment forumComment;
-    private RegisteredUser user;
+    private User user;
     private ForumThread thread;
 
     @BeforeEach
     public void setUp() {
         forumComment = new ForumComment();
-        user = new RegisteredUser();
+        user = new User();
         thread = new ForumThread();
     }
 

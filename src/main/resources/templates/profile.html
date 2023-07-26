@@ -1,0 +1,37 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments :: thehead}"></head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments :: theNavbar}"></div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profile</h5>
+                    <div class="form-group">
+                        <label for="profilePic">Profile Picture</label>
+                        <input type="file" class="form-control" id="profilePic">
+                    </div>
+                    <p class="card-text mt-3">
+                        <strong>Username:</strong> <span id="username">Username Here</span><br>
+                        <strong>Location:</strong> <span id="location">Location Here</span><br>
+                        <div class="form-group mt-2">
+                            <label for="newLocation">Update Location</label>
+                            <input type="text" class="form-control" id="newLocation" placeholder="Enter new location">
+                        </div>
+                        <strong>Profile Caption:</strong> <span id="profileCaption">Caption Here</span><br>
+                        <strong>Email:</strong> <span id="email">Email Here</span><br>
+                    </p>
+                    <button class="btn btn-primary mt-3">Update Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments :: thefooter}"></div>
+</body>
+</html>
