@@ -29,7 +29,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     })
     .then(function(data) {
         console.log('Success:', data);
-        // Here, redirect the user to the registration success page
+        // Redirect the user to the registration success page
         window.location.href = "/registrationsuccess";
     })
     .catch(function(error) {
