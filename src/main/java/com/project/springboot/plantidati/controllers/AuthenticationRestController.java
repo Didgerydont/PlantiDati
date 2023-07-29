@@ -4,9 +4,12 @@ import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.repository.UserRepository;
 import com.project.springboot.plantidati.service.AuthenticationService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class AuthenticationRestController {
     private final AuthenticationService authService;
     private final UserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationRestController.class);
+
 
     @Autowired
     public AuthenticationRestController(AuthenticationService authService, UserRepository userRepository) {
@@ -29,9 +34,15 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AutenticationRequest request) {
-        return ResponseEntity.ok(authService.authenticate(request));
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+        try {
+            logger.info(request.getUsername());
+            return ResponseEntity.ok(authService.authenticate(request));
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
+
 
     @GetMapping("/isusernametaken")
     public ResponseEntity<Boolean> isUsernameTaken(@RequestParam String username) {

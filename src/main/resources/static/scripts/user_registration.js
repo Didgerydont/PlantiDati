@@ -13,7 +13,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     };
 
     // Send the user data to the server
-    fetch('/users/register', {
+    fetch('/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ document.getElementById('username').addEventListener('input', function(event) {
 
     // Set a new timeout to perform the username check after the user stops typing for 500 ms
     usernameCheckTimeout = setTimeout(function() {
-        fetch('/users/isusernametaken?username=' + username)
+        fetch('/auth/isusernametaken?username=' + username)
             .then(function(response) {
                 if (response.ok) {
                     return response.json();
