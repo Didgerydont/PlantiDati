@@ -3,6 +3,8 @@ package com.project.springboot.plantidati.controllers;
 import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.repository.UserRepository;
 import com.project.springboot.plantidati.service.AuthenticationService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -34,15 +37,24 @@ public class AuthenticationRestController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest request, HttpServletResponse response) {
         try {
-            logger.info(request.getUsername());
-            return ResponseEntity.ok(authService.authenticate(request));
+            AuthenticationResponse authResponse = authService.authenticate(request);
+            String jwt = authResponse.getToken();
+
+            // Create a new cookie
+            Cookie cookie = new Cookie("token", jwt);
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true); // make sure to set this in production for HTTPS only
+            cookie.setPath("/"); // available to entire domain
+
+            // Add the cookie to the response
+            response.addCookie(cookie);
+            return ResponseEntity.ok("User logged in");
         } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password", e);
         }
     }
-
 
     @GetMapping("/isusernametaken")
     public ResponseEntity<Boolean> isUsernameTaken(@RequestParam String username) {
@@ -50,8 +62,8 @@ public class AuthenticationRestController {
         return new ResponseEntity<>(existingUser.isPresent(), HttpStatus.OK);
     }
 
-    @PutMapping("/{userId}/updateEmail")
-    public ResponseEntity<User> updateUserEmail(@PathVariable("userId") int userId, @RequestBody String newEmail) {
+    @PutMapping("/{userId}/profile")
+    public ResponseEntity<User> profile(@PathVariable("userId") int userId, @RequestBody String newEmail) {
         Optional<User> existingUserOpt = authService.findUserById(userId);
         if (existingUserOpt.isPresent()) {
             User existingUser = existingUserOpt.get();
@@ -115,3 +127,5 @@ public class AuthenticationRestController {
         }
     }
 }
+
+

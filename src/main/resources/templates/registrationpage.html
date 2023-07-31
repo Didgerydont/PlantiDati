@@ -18,12 +18,21 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input id="password" type="password" class="form-control" required/>
+            <input id="password" type="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                   required/>
+            <div id="message" style="display: none;">
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Confirm Password</label>
-            <input id="confirmPassword" type="password" class="form-control" required/>
+            <input id="confirmPassword" type="password" class="form-control"
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
         </div>
+        <span id="passwordError" style="display: none;"></span>
         <div class="mb-3">
             <label class="form-label">Location</label>
             <input id="location" type="text" class="form-control" required/>
@@ -40,5 +49,6 @@
 <!-- Footer -->
 <div th:replace="~{fragments :: thefooter}"></div>
 <script th:src="@{/scripts/user_registration.js}"></script>
+<script th:src="@{/scripts/password_constraints.js}"></script>
 </body>
 </html>

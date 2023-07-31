@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="thehead">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,6 @@
         <nav class="navbar navbar-expand-lg bg-success navbar-light py-2 py-lg-0">
             <a th:href="@{/index}" class="navbar-brand">
                 <img class="img-fluid" th:src="@{/images/logo.png}" alt="Logo">
-
             </a>
             <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -33,30 +32,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a th:href="@{/registrationpage}" class="nav-item nav-link">Register</a>
+                    <!-- User is logged out -->
+                    <a th:href="@{/registrationpage}" class="nav-item nav-link" sec:authorize="isAnonymous()">Register!</a>
+                    <!-- User is logged in -->
+                    <a th:href="@{/forum}" class="nav-item nav-link" sec:authorize="isAuthenticated()">Forum</a>
 
-                    <!--          <a href="product.html" class="nav-item nav-link">Products</a>-->
-                    <!--          <a href="store.html" class="nav-item nav-link">Store</a>-->
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu bg-light rounded-0 m-0">
-                            <a href="calenders.html" class="dropdown-item">Features</a>
+                    <!-- Common links -->
+                    <a th:href="@{/calendars}" class="nav-item nav-link">Calendars</a>
+                    <a th:href="@{/plantidata}" class="nav-item nav-link">PlantiData</a>
+                    <a th:href="@{/hobbycorner}" class="nav-item nav-link">Hobby Corner</a>
 
-                            <a href="blog.html" class="dropdown-item">Blog Article</a>
-                            <a href="forum.html" class="dropdown-item">Forum</a>
-                            <a href="content.html" class="dropdown-item"></a>
-
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
-                </div>
-                <div class="border-start ps-4 d-none d-lg-block">
-                    <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
+                    <!-- Login/Logout -->
+                    <a th:href="@{/login}" class="nav-item nav-link" sec:authorize="isAnonymous()">Sign in</a>
+                    <a th:href="@{/profile}" class="nav-item nav-link" sec:authorize="isAuthenticated()">Profile</a>
                 </div>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
+</div>
+
 
 
 </div>

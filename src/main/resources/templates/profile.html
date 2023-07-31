@@ -4,31 +4,34 @@
 <!-- Navbar -->
 <div th:replace="~{fragments :: theNavbar}"></div>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Profile</h5>
-                    <div class="form-group">
-                        <label for="profilePic">Profile Picture</label>
-                        <input type="file" class="form-control" id="profilePic">
-                    </div>
-                    <p class="card-text mt-3">
-                        <strong>Username:</strong> <span id="username">Username Here</span><br>
-                        <strong>Location:</strong> <span id="location">Location Here</span><br>
-                        <div class="form-group mt-2">
-                            <label for="newLocation">Update Location</label>
-                            <input type="text" class="form-control" id="newLocation" placeholder="Enter new location">
-                        </div>
-                        <strong>Profile Caption:</strong> <span id="profileCaption">Caption Here</span><br>
-                        <strong>Email:</strong> <span id="email">Email Here</span><br>
-                    </p>
-                    <button class="btn btn-primary mt-3">Update Profile</button>
-                </div>
-            </div>
+<div class="container">
+    <h1>Welcome, <span th:text="${user.username}"></span>!</h1>
+
+    <form th:action="@{/profile/update}" th:object="${user}" method="post" enctype="multipart/form-data">
+        <!-- Will need to do image upload next -->
+        <!--<div class="form-group">
+            <img alt="Profile Picture"/>
+            <label>Update Profile Picture:
+                <input class="form-control" type="file" th:field="*{profilePic}">
+            </label>
+        </div> -->
+        <div class="form-group">
+            <label>Profile Caption:
+                <textarea class="form-control" th:field="*{profileCaption}"></textarea>
+            </label>
         </div>
-    </div>
+        <div class="form-group">
+            <label>Location:
+                <input class="form-control" type="text" th:field="*{location}">
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+    <h2>Your Calendars</h2>
+    <ul>
+        <li th:each="calendar : ${calendars}" th:text="${calendar.name}"></li>
+    </ul>
 </div>
 
 <!-- Footer -->

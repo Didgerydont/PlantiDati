@@ -32,12 +32,12 @@ public class SecurityConfig {
 
         // Configure authorization rules
         http.authorizeHttpRequests(authorize -> {
-            // Specify endpoints which should be available for all users
+            // Endpoints that are available for all users
             authorize
                     .requestMatchers("/", "/index", "/login", "/auth/isusernametaken",
                             "/auth/register", "/registrationpage", "/viewcalendar", "/data",
                             "/content", "/auth/authenticate", "/registrationsuccess").permitAll()
-                    // Specify endpoints which should be available only for authenticated users
+                    // Specify endpoints only accessable to authorised users
                     .requestMatchers("/profile/**", "/forum/**", "/createCalendar/**").authenticated()
                     // Authorise Static Resources
                     .requestMatchers("/css/**", "/images/**", "/scripts/**").permitAll()

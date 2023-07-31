@@ -3,6 +3,11 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     // Prevent the form from being submitted normally
     event.preventDefault();
 
+    // Check if passwords match
+    if (!validatePasswords()) {
+        return;
+    }
+
     // Create a new user object based on the form fields
     var newUser = {
         username: document.getElementById('username').value,
@@ -33,9 +38,6 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         window.location.href = "/registrationsuccess";
     })
     .catch(function(error) {
-        // Log the error for debugging
-        console.error('Error:', error);
-
         // Log the error for debugging
         console.error('Error:', error);
 
@@ -87,12 +89,21 @@ document.getElementById('username').addEventListener('input', function(event) {
 function validatePasswords() {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('confirmPassword').value;
+    var passwordError = document.getElementById('passwordError');
 
     if (password !== confirmPassword) {
-        alert('Passwords do not match.');
+        passwordError.textContent = 'Passwords do not match.';
+        passwordError.style.color = 'red';
+        passwordError.style.display = 'block';
         return false;
+    } else {
+        passwordError.textContent = 'Passwords match.';
+        passwordError.style.color = 'green';
+        passwordError.style.display = 'block';
     }
 
     return true;
 }
 
+// Adding input event listener for confirmPassword field
+document.getElementById('confirmPassword').addEventListener('input', validatePasswords);
