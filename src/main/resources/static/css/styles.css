@@ -23,3 +23,10 @@
 .invalid {
     color: red;
 }
+
+/* Profile */
+#profilePic {
+    width: 30%;  /* Will need to play with these some more
+    height: 100px;*/
+    object-fit: cover;  /* maintain ratio */
+}

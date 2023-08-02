@@ -1,8 +1,8 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments :: thehead}"></head>
+<head th:replace="~{fragments/thehead :: thehead}"></head>
 <body>
 <!-- Navbar -->
-<div th:replace="~{fragments :: theNavbar}"></div>
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 
 <div class="container mt-5">
     <h1>Register</h1>
@@ -47,7 +47,7 @@
 
 
 <!-- Footer -->
-<div th:replace="~{fragments :: thefooter}"></div>
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
 <script th:src="@{/scripts/user_registration.js}"></script>
 <script th:src="@{/scripts/password_constraints.js}"></script>
 </body>

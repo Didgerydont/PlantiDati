@@ -1,15 +1,20 @@
 package com.project.springboot.plantidati.controllers;
 
 import com.project.springboot.plantidati.model.User;
+import com.project.springboot.plantidati.service.AuthenticationService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
+@AllArgsConstructor
 @Controller
 public class WebController {
+    private final AuthenticationService authService;
 
     // logged in user
     @GetMapping("/")
@@ -47,8 +52,17 @@ public class WebController {
 //        return "logout";
 //    }
 
-    @RequestMapping(value = "/profile")
-    public String profile() {
-        return "profile";
+    @GetMapping("/profile")
+    public String getProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        Optional<User> existingUser = authService.findUserByUsername(username);
+        if (existingUser.isPresent()) {
+            model.addAttribute("user", existingUser.get());
+            return "profile";
+        } else {
+            return "error";
+        }
     }
 }

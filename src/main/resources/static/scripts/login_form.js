@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             return response.json();
         })
         .then(function(data) {
-                console.log('Success:', data);
-                // Redirect the user to the registration success page
-                window.location.href = "/profile";
-            })
+            console.log('Success:', data);
+            // Redirect to /profile
+            window.location.href = "/profile";
+        })
         .catch((error) => {
            console.error('Error:', error);
            // Display error message

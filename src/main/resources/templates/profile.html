@@ -1,40 +1,81 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments :: thehead}"></head>
+<head th:replace="~{fragments/thehead :: thehead}">
+</head>
 <body>
 <!-- Navbar -->
-<div th:replace="~{fragments :: theNavbar}"></div>
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 
-<div class="container">
-    <h1>Welcome, <span th:text="${user.username}"></span>!</h1>
+<div class="container mt-5">
+    <h1>Welcome, <span id="username"></span>!</h1>
 
-    <form th:action="@{/profile/update}" th:object="${user}" method="post" enctype="multipart/form-data">
-        <!-- Will need to do image upload next -->
-        <!--<div class="form-group">
-            <img alt="Profile Picture"/>
-            <label>Update Profile Picture:
-                <input class="form-control" type="file" th:field="*{profilePic}">
-            </label>
-        </div> -->
-        <div class="form-group">
-            <label>Profile Caption:
-                <textarea class="form-control" th:field="*{profileCaption}"></textarea>
-            </label>
+    <div class="row mt-4">
+        <!-- Profile Picture Column -->
+        <div class="col-md-4 col-12">
+            <h2>Profile Picture</h2>
+            <div class="profilepagepicture">
+                <img alt="Profile Picture" id="profilePic"/>
+            </div>
+            <a href="#" id="changePic">Change profile picture?</a>
+            <div id="profilePicInput" style="display: none;">
+                <input class="form-control" type="file">
+                <button type="submit" class="btn btn-primary mt-2" id="submitPic">Update Picture</button>
+                <div id="picResult" style="display: none;"></div>
+            </div>
+
         </div>
-        <div class="form-group">
-            <label>Location:
-                <input class="form-control" type="text" th:field="*{location}">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
 
-    <h2>Your Calendars</h2>
-    <ul>
-        <li th:each="calendar : ${calendars}" th:text="${calendar.name}"></li>
+        <!-- Profile Caption Column -->
+        <div class="col-md-4 col-12 mt-md-0 mt-4">
+            <h2>Profile Caption</h2>
+            <p id="profileCaption"></p>
+            <div>
+                <a href="#" id="changeCaption">Change caption?</a>
+                <div id="profileCaptionInput" style="display: none;">
+                    <textarea class="form-control"></textarea>
+                    <button type="submit" class="btn btn-primary mt-2" id="submitCaption">Update Caption</button>
+                </div>
+
+                <div id="captionResult" style="display: none;"></div>
+            </div>
+
+        </div>
+
+        <!-- Location Column -->
+        <div class="col-md-4 col-12 mt-md-0 mt-4">
+            <h2>Location</h2>
+            <p id="locationText"></p>
+            <div>
+                <a href="#" id="changeLocation">Change location?</a>
+                <div id="locationInput" style="display: none;">
+                    <input class="form-control" type="text">
+                    <button type="submit" class="btn btn-primary mt-2" id="submitLocation">Update Location</button>
+                </div>
+
+                <div id="locationResult" style="display: none;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Todo - figure out better system for change password -->
+
+    <!-- Todo - add calendars and forum-->
+    <h2 class="mt-5">Your Calendars</h2>
+    <ul id="calendars" class="list-group">
+        <!-- Calendars will be inserted here via JavaScript -->
+    </ul>
+
+    <h2 class="mt-5">Your Calendars</h2>
+    <ul id="forum" class="list-group">
+        <!-- Forums will be inserted here via JavaScript -->
     </ul>
 </div>
 
 <!-- Footer -->
-<div th:replace="~{fragments :: thefooter}"></div>
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
+<script src="/scripts/get_profile.js"></script>
+<script src="/scripts/profile_manager.js"></script>
+
 </body>
 </html>

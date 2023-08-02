@@ -35,7 +35,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     .then(function(data) {
         console.log('Success:', data);
         // Redirect the user to the registration success page
-        window.location.href = "/registrationsuccess";
+        window.location.href = "/profile";
     })
     .catch(function(error) {
         // Log the error for debugging

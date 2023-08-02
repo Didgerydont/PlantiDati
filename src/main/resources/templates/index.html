@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: thehead}"></head>
+<head th:replace="~{fragments/thehead :: thehead}"></head>
 <body>
 <!-- Navbar -->
-<div th:replace="~{fragments :: theNavbar}"></div>
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row">
         <div class="col text-center">
@@ -34,6 +34,6 @@
     </div>
 </div>
 
-<div th:replace="~{fragments :: thefooter}"></div>
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
 </body>
 </html>
