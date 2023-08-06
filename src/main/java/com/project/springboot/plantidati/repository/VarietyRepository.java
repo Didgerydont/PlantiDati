@@ -1,16 +1,19 @@
 package com.project.springboot.plantidati.repository;
 
 import com.project.springboot.plantidati.model.Variety;
-
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface VarietyRepository extends JpaRepository<Variety, Integer> {
+
+    List<Variety> findByPlant_PlantId(int plantId);
 
     @Modifying
     @Transactional

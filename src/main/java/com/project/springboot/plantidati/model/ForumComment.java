@@ -1,5 +1,6 @@
 package com.project.springboot.plantidati.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,10 +16,12 @@ public class ForumComment {
 
     @ManyToOne
     @JoinColumn(name = "thread_Id", nullable = false)
+    @JsonBackReference(value = "thread-comment")
     private ForumThread thread;
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
+    @JsonBackReference(value = "user-forumcomment")
     private User user;
 
     @Column(name = "comment")

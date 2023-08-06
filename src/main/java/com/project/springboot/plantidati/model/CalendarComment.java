@@ -1,12 +1,17 @@
 package com.project.springboot.plantidati.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "CalendarComment")
 public class CalendarComment implements Serializable {
 
@@ -17,6 +22,7 @@ public class CalendarComment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "calendar_Id", nullable = false)
+    @JsonBackReference(value = "calendar-comment")
     private Calendar calendar;
 
     @ManyToOne
@@ -24,10 +30,12 @@ public class CalendarComment implements Serializable {
             @JoinColumn(name = "calendar_Id", referencedColumnName = "calendar_Id", insertable = false, updatable = false),
             @JoinColumn(name = "entry_Id", referencedColumnName = "entry_Id", insertable = false, updatable = false)
     })
+    @JsonBackReference(value = "entry-comment")
     private CalendarEntry entry;
 
     @ManyToOne
     @JoinColumn(name = "user_Id", nullable = false)
+    @JsonBackReference(value = "user-comment")
     private User user;
 
     @Column(name = "comment")

@@ -1,7 +1,12 @@
 package com.project.springboot.plantidati.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Plant")
 public class Plant {
@@ -14,31 +19,8 @@ public class Plant {
     private String plantName;
 
     @ManyToOne
-    @JoinColumn(name = "plant_family_Id", nullable = false)
+    @JoinColumn(name = "plant_family_id", nullable = false)
+    @JsonBackReference
     private PlantFamily plantFamily;
 
-    // Getters && Setters
-    public int getPlantId() {
-        return plantId;
-    }
-
-    public void setPlantId(int plantId) {
-        this.plantId = plantId;
-    }
-
-    public String getPlantName() {
-        return plantName;
-    }
-
-    public void setPlantName(String plantName) {
-        this.plantName = plantName;
-    }
-
-    public PlantFamily getPlantFamily() {
-        return plantFamily;
-    }
-
-    public void setPlantFamily(PlantFamily plantFamily) {
-        this.plantFamily = plantFamily;
-    }
 }

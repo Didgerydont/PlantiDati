@@ -14,8 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Map;
 import java.util.Optional;
 
@@ -38,44 +40,61 @@ public class ProfileController {
     }
 
     @PostMapping("/uploadProfilePic")
-    public String singleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    // ResponseEntity<?> allows for dynamic body
+    public ResponseEntity<?> singleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 
         if (file.isEmpty()) {
-            return "Error: File is empty.";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: File is empty.");
         }
 
         // Extract the JWT from the HttpOnly cookie
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    String token = cookie.getValue();
-
-                    String username = jwtService.extractUsername(token);
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                    if (jwtService.isTokenValid(token, userDetails)) {
-                        int userId = jwtService.extractUserId(token);
-
-                        Optional<User> userOptional = userRepository.findById(userId);
-
-                        if (userOptional.isPresent()) {
-                            User user = userOptional.get();
-                            try {
-                                user.setProfilePic(file.getBytes());
-                                userRepository.save(user);
-                                return "File uploaded successfully!";
-                            } catch (IOException e) {
-                                return "Error: " + e.getMessage();
-                            }
-                        } else {
-                            return "Error: User not found.";
-                        }
-                    }
-                }
-            }
+        Cookie cookie = WebUtils.getCookie(request, "token");
+        if (cookie == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: No cookies found.");
         }
 
-        return "Error: Unauthorized action.";
+        String token = cookie.getValue();
+
+        String username = jwtService.extractUsername(token);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if (!jwtService.isTokenValid(token, userDetails)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error: Invalid token.");
+        }
+
+        int userId = jwtService.extractUserId(token);
+
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: User not found.");
+        }
+
+        User user = userOptional.get();
+
+        // File type validation
+        String fileType = file.getContentType();
+        if (!"image/png".equals(fileType)
+                && !"image/jpeg".equals(fileType)
+                && !"image/jpg".equals(fileType)
+                && !"image/gif".equals(fileType)
+                && !"image/bmp".equals(fileType)
+                && !"image/tiff".equals(fileType)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Invalid file type. Please upload a PNG, JPEG, JPG, GIF, BMP, or TIFF image.");
+        }
+
+        try {
+            byte[] imageBytes = file.getBytes();
+            user.setProfilePic(imageBytes);
+            userRepository.save(user);
+
+            // Convert byte array to Base64
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+            // Return the Base64 image string
+            return ResponseEntity.ok(base64Image);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
     }
 
 
@@ -124,6 +143,8 @@ public class ProfileController {
 
     @PutMapping("/{userId}/updateProfileCaption")
     public ResponseEntity<String> updateProfileCaption(@PathVariable("userId") int userId, @RequestBody Map<String, String> body) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("Principal: " + principal);
         UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> existingUserOpt = userRepository.findById(userId);
         String newProfileCaption = body.get("newProfileCaption");

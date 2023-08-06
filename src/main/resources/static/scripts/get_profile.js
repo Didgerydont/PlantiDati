@@ -1,4 +1,5 @@
-let userId; // Global variable to hold the user's ID for calling in other method.
+let userId = window.userId; // Global variable to hold the user's ID for calling in other method.
+let userLocation = window.userLocation; // Global variable to hold the user's location for calling in other method.
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Fetch the profile now that the user is logged in
@@ -10,8 +11,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .then(data => {
         console.log(data);
 
-        // Store the userId in the global variable
+        // Store the userId and location in the global variable
         userId = data.userId;
+        userLocation = data.location;
 
         // Insert user data into HTML
         document.getElementById('username').textContent = data.username;

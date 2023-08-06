@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -27,13 +26,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Configure CSRF protection
-        http.csrf(csrf ->
-                        // Exclude the "/auth/authenticate" endpoint from CSRF protection
-                        csrf.ignoringRequestMatchers(
-                                new AntPathRequestMatcher("/auth/authenticate"),
-                                new AntPathRequestMatcher("/auth/register")
-                        )
-                )
+        http
+                .csrf().disable()
                 // Configure CORS
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
@@ -43,13 +37,17 @@ public class SecurityConfig {
                     authorize
                             .requestMatchers("/", "/index", "/login", "/auth/isusernametaken",
                                     "/auth/register", "/registrationpage", "/viewcalendar", "/data",
-                                    "/content", "/auth/authenticate", "/registrationsuccess").permitAll()
+                                    "/content", "/auth/authenticate", "/registrationsuccess",
+                                    "/plant/getAll").permitAll()
                             // Specify endpoints only accessable to authorised users
                             .requestMatchers("/profile", "/auth/getProfile", "/forum",
                                     "/createCalendar", "/profile/uploadProfilePic",
                                     "/profile/{userId}/updatePassword",
                                     "/profile/{userId}/updateLocation",
-                                    "/profile/{userId}/updateProfileCaption").authenticated()
+                                    "/profile/{userId}/updateProfileCaption",
+                                    "/calendarCreate", "/calendar/create",
+                                    "/firstCalendarEntry", "/calendarentry/createfirstcalenderentry",
+                                    "/variety/createVariety").authenticated()
                             // Authorise Static Resources
                             .requestMatchers("/css/**", "/images/**", "/scripts/**").permitAll()
                             // Deny all other requests

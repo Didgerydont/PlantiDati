@@ -1,20 +1,20 @@
 package com.project.springboot.plantidati.service;
 
-import com.project.springboot.plantidati.repository.VarietyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
+import com.project.springboot.plantidati.model.Variety;
 
-@Service
-public class VarietyService {
+import java.util.List;
+import java.util.Optional;
 
-    @Autowired
-    VarietyRepository varietyRepository;
 
-    // run every 180 seconds
-    @Scheduled(fixedRate = 180000)
-    public void updateVarietyTable() {
-        // call to repository method that executes the SQL update
-        varietyRepository.updateVarietyAverages();
-    }
+public interface VarietyService {
+
+    Optional<Variety> findById(int id);
+
+    List<Variety> findByPlantId(int plantId);
+
+    Variety save(Variety variety);
+
+    void updateVarietyTable();
+
+
 }

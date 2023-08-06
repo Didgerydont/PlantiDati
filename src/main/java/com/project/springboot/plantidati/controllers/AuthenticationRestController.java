@@ -63,7 +63,7 @@ public class AuthenticationRestController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
-        Optional<User> existingUser = authService.findUserByUsername(username);
+        Optional<User> existingUser = userRepository.findByUsername(username);
         if (existingUser.isPresent()) {
             return new ResponseEntity<>(existingUser.get(), HttpStatus.OK);
         } else {
@@ -74,10 +74,10 @@ public class AuthenticationRestController {
 
     @GetMapping("/isusernametaken")
     public ResponseEntity<Boolean> isUsernameTaken(@RequestParam String username) {
-        Optional<User> existingUser = authService.findUserByUsername(username);
+        Optional<User> existingUser = userRepository.findByUsername(username);
         return new ResponseEntity<>(existingUser.isPresent(), HttpStatus.OK);
     }
-    
+
 }
 
 

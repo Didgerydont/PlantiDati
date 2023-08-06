@@ -1,39 +1,30 @@
 package com.project.springboot.plantidati.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "PlantFamily")
 public class PlantFamily {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "plant_family_Id")
+    @Column(name = "plant_family_id")
     private int familyId;
 
-    @Column(name = "family_Name", nullable = false)
+    @Column(name = "family_name", nullable = false)
     private String familyName;
 
     @OneToMany(mappedBy = "plantFamily")
+    @JsonManagedReference
     private List<Plant> plants;
 
-    // Getters && Setters
-    public int getFamilyId() {
-        return familyId;
-    }
-
-    public void setFamilyId(int familyId) {
-        this.familyId = familyId;
-    }
-
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
 
     public List<Plant> getPlants() {
         return plants;

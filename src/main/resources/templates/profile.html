@@ -20,8 +20,9 @@
             <div id="profilePicInput" style="display: none;">
                 <input class="form-control" type="file">
                 <button type="submit" class="btn btn-primary mt-2" id="submitPic">Update Picture</button>
-                <div id="picResult" style="display: none;"></div>
+
             </div>
+            <div id="picResult" style="display: none;"></div>
 
         </div>
 
@@ -62,11 +63,12 @@
 
     <!-- Todo - add calendars and forum-->
     <h2 class="mt-5">Your Calendars</h2>
+    <a th:href="@{calendarCreate}">Create new Calendar?</a>
     <ul id="calendars" class="list-group">
         <!-- Calendars will be inserted here via JavaScript -->
     </ul>
 
-    <h2 class="mt-5">Your Calendars</h2>
+    <h2 class="mt-5">Forum Activity</h2>
     <ul id="forum" class="list-group">
         <!-- Forums will be inserted here via JavaScript -->
     </ul>

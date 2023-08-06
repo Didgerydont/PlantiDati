@@ -16,8 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 
 @Service
 @RequiredArgsConstructor
@@ -75,12 +73,4 @@ public class AuthenticationService {
         }
     }
 
-
-    public Optional<User> findUserById(int userId) {
-        return repository.findById(userId);
-    }
-
-    public Optional<User> findUserByUsername(String username) {
-        return repository.findByUsername(username);
-    }
 }

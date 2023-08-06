@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/thehead :: thehead}"></head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
+
+<!-- Form -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="mt-3">Create Calendar</h1>
+            <form id="calendarForm" class="mt-4">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Calendar Name</label>
+                    <input type="text" id="title" class="form-control" placeholder="Calendar Name"/>
+                </div>
+
+                <!-- Select general plant type -->
+                <div class="mb-3">
+                    <label for="plantId" class="form-label">Plant</label>
+                    <select id="plantId">
+                        <!-- List of base plants like potato, carrot, etc populated by JS-->
+                    </select>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" id="calendarSubmit" class="btn btn-primary">Create Calendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
+
+<!-- JS -->
+<script th:src="@{/scripts/calendar_creation.js}"></script>
+
+</body>
+</html>

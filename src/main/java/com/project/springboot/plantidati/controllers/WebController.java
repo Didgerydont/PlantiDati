@@ -2,6 +2,7 @@ package com.project.springboot.plantidati.controllers;
 
 import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.service.AuthenticationService;
+import com.project.springboot.plantidati.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,8 @@ import java.util.Optional;
 @Controller
 public class WebController {
     private final AuthenticationService authService;
+
+    private final UserService userService;
 
     // logged in user
     @GetMapping("/")
@@ -41,11 +44,6 @@ public class WebController {
         return "registrationpage";
     }
 
-    @GetMapping("/registrationsuccess")
-    public String registrationSuccess() {
-        return "registrationSuccess";
-    }
-
 
 //    @GetMapping(value = "/logout")
 //    public String logout() {
@@ -57,12 +55,19 @@ public class WebController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
-        Optional<User> existingUser = authService.findUserByUsername(username);
+        Optional<User> existingUser = userService.findUserByUsername(username);
         if (existingUser.isPresent()) {
             model.addAttribute("user", existingUser.get());
             return "profile";
         } else {
             return "error";
         }
+    }
+
+    // Calendar Creation Form
+    @GetMapping("/calendarCreate")
+    public String calendarCreationForm(Model model) {
+
+        return "calendarCreationform";
     }
 }

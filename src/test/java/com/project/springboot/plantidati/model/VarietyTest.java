@@ -25,7 +25,8 @@ public class VarietyTest {
     }
 
     @Test
-    public void testGetPlantFamily() {
+    void testVarietyRelationshipWithPlant() {
+        Plant plant = new Plant();
         variety.setPlant(plant);
         assertEquals(plant, variety.getPlant());
     }

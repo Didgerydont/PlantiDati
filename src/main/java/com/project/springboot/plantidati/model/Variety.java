@@ -1,7 +1,12 @@
 package com.project.springboot.plantidati.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Variety")
 public class Variety {
@@ -12,7 +17,8 @@ public class Variety {
     private int varietyId;
 
     @ManyToOne
-    @JoinColumn(name="plant_Id", nullable=false)
+    @JoinColumn(name = "plant_Id", nullable = false)
+    @JsonBackReference
     private Plant plant;
 
     @Column(name = "variety_name")
@@ -63,151 +69,5 @@ public class Variety {
     @Column(name = "ripening_stage")
     private Integer ripeningStage;
 
-
-    // Getters
-    public int getVarietyId() {
-        return varietyId;
-    }
-
-    public Plant getPlant() {
-        return plant;
-    }
-
-    public String getVarietyName() {
-        return varietyName;
-    }
-
-    public String getVarietyDescription() {
-        return varietyDescription;
-    }
-
-    public Integer getVarietyHeight() {
-        return varietyHeight;
-    }
-
-    public Integer getVarietyWidth() {
-        return varietyWidth;
-    }
-
-    public Float getVarietyYield() {
-        return varietyYield;
-    }
-
-    public double getGrowthRate() {
-        return growthRate;
-    }
-
-    public Integer getWateringRequirement() {
-        return wateringRequirement;
-    }
-
-    public Integer getFertilizingRequirement() {
-        return fertilizingRequirement;
-    }
-
-    public Integer getLightRequirement() {
-        return lightRequirement;
-    }
-
-    public Integer getPestResistance() {
-        return pestResistance;
-    }
-
-    public Integer getDiseaseResistance() {
-        return diseaseResistance;
-    }
-
-    public Integer getGerminationPhase() {
-        return germinationPhase;
-    }
-
-    public Integer getVegetativeStage() {
-        return vegetativeStage;
-    }
-
-    public Integer getBuddingStage() {
-        return buddingStage;
-    }
-
-    public Integer getFloweringStage() {
-        return floweringStage;
-    }
-
-    public Integer getRipeningStage() {
-        return ripeningStage;
-    }
-
-    // Setters
-    public void setVarietyId(int varietyId) {
-        this.varietyId = varietyId;
-    }
-
-    public void setPlant(Plant plant) {
-        this.plant = plant;
-    }
-
-    public void setVarietyName(String varietyName) {
-        this.varietyName = varietyName;
-    }
-
-    public void setVarietyDescription(String varietyDescription) {
-        this.varietyDescription = varietyDescription;
-    }
-
-    public void setVarietyHeight(Integer varietyHeight) {
-        this.varietyHeight = varietyHeight;
-    }
-
-    public void setVarietyWidth(Integer varietyWidth) {
-        this.varietyWidth = varietyWidth;
-    }
-
-    public void setVarietyYield(Float varietyYield) {
-        this.varietyYield = varietyYield;
-    }
-
-    public void setGrowthRate(Integer growthRate) {
-        this.growthRate = growthRate;
-    }
-
-    public void setWateringRequirement(Integer wateringRequirement) {
-        this.wateringRequirement = wateringRequirement;
-    }
-
-    public void setFertilizingRequirement(Integer fertilizingRequirement) {
-        this.fertilizingRequirement = fertilizingRequirement;
-    }
-
-    public void setLightRequirement(Integer lightRequirement) {
-        this.lightRequirement = lightRequirement;
-    }
-
-    public void setPestResistance(Integer pestResistance) {
-        this.pestResistance = pestResistance;
-    }
-
-    public void setDiseaseResistance(Integer diseaseResistance) {
-        this.diseaseResistance = diseaseResistance;
-    }
-
-    public void setGerminationPhase(Integer germinationPhase) {
-        this.germinationPhase = germinationPhase;
-    }
-
-    public void setVegetativeStage(Integer vegetativeStage) {
-        this.vegetativeStage = vegetativeStage;
-    }
-
-    public void setBuddingStage(Integer buddingStage) {
-        this.buddingStage = buddingStage;
-    }
-
-    public void setFloweringStage(Integer floweringStage) {
-        this.floweringStage = floweringStage;
-    }
-
-    public void setRipeningStage(Integer ripeningStage) {
-        this.ripeningStage = ripeningStage;
-    }
 
 }
