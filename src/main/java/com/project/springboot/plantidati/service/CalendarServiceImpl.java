@@ -1,8 +1,8 @@
 package com.project.springboot.plantidati.service;
 
 import com.project.springboot.plantidati.model.Calendar;
-import com.project.springboot.plantidati.model.Plant;
 import com.project.springboot.plantidati.model.User;
+import com.project.springboot.plantidati.model.Variety;
 import com.project.springboot.plantidati.repository.CalendarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,12 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public Calendar createCalendar(User user, String title, String location, Plant plant) {
+    public Calendar createCalendar(User user, String title, String location, Variety variety) {
         Calendar calendar = new Calendar();
         calendar.setUser(user);
         calendar.setTitle(title);
         calendar.setLocation(location);
-        calendar.setPlant(plant);
+        calendar.setVariety(variety);
 
         return calendarRepository.save(calendar);
     }

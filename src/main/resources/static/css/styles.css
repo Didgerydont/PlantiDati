@@ -30,3 +30,11 @@
     height: 100px;*/
     object-fit: cover;  /* maintain ratio */
 }
+
+/* Variety */
+
+/*Variety container on */
+.variety-container {
+    display: flex;
+    align-items: center;
+}

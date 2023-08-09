@@ -1,25 +1,32 @@
 package com.project.springboot.plantidati.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "Variety")
+@Table(name = "variety")
 public class Variety {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "variety_Id")
+    @Column(name = "variety_id")
     private int varietyId;
 
     @ManyToOne
-    @JoinColumn(name = "plant_Id", nullable = false)
+    @JoinColumn(name = "plant_id", nullable = false)
     @JsonBackReference
     private Plant plant;
+
+    @OneToMany(mappedBy = "variety")
+    @JsonManagedReference
+    private List<Calendar> calendars;
 
     @Column(name = "variety_name")
     private String varietyName;

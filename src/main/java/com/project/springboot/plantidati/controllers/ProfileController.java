@@ -5,6 +5,8 @@ import com.project.springboot.plantidati.repository.UserRepository;
 import com.project.springboot.plantidati.service.JwtService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,47 +27,55 @@ import java.util.Optional;
 @RequestMapping("/profile")
 public class ProfileController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
 
     @Autowired
-    public ProfileController(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    public ProfileController(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping("/uploadProfilePic")
     // ResponseEntity<?> allows for dynamic body
     public ResponseEntity<?> singleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 
+        logger.info("Uploading profile picture...");
         if (file.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: File is empty.");
         }
 
         // Extract the JWT from the HttpOnly cookie
+        logger.info("Check for cookie...");
         Cookie cookie = WebUtils.getCookie(request, "token");
         if (cookie == null) {
+            logger.error("No cookies found");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: No cookies found.");
         }
 
+        logger.info("Cookie Found");
         String token = cookie.getValue();
 
+        logger.info("Validating JWT...");
         String username = jwtService.extractUsername(token);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!jwtService.isTokenValid(token, userDetails)) {
+            logger.error("Invalid token");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error: Invalid token.");
         }
-
+        logger.info("JWT validated");
         int userId = jwtService.extractUserId(token);
-
         Optional<User> userOptional = userRepository.findById(userId);
+        logger.info("Find userId");
 
-        if (!userOptional.isPresent()) {
+        if (userOptional.isEmpty()) {
+            logger.error("User with ID {} not found", userId);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: User not found.");
         }
 
@@ -91,8 +101,10 @@ public class ProfileController {
             String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 
             // Return the Base64 image string
+            logger.info("Successfully uploaded profile picture for user: {}", username);
             return ResponseEntity.ok(base64Image);
         } catch (IOException e) {
+            logger.error("Error uploading profile picture: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
     }
@@ -104,7 +116,7 @@ public class ProfileController {
         Optional<User> existingUserOpt = userRepository.findById(userId);
         String newPassword = body.get("newPassword");
 
-        if (!existingUserOpt.isPresent()) {
+        if (existingUserOpt.isEmpty()) {
             return new ResponseEntity<>("Error: User not found.", HttpStatus.NOT_FOUND);
         }
         // Make sure the client is updating their own profile
@@ -126,7 +138,7 @@ public class ProfileController {
         Optional<User> existingUserOpt = userRepository.findById(userId);
         String newLocation = body.get("newLocation");
 
-        if (!existingUserOpt.isPresent()) {
+        if (existingUserOpt.isEmpty()) {
             return new ResponseEntity<>("Error: User not found.", HttpStatus.NOT_FOUND);
         }
 
@@ -149,7 +161,7 @@ public class ProfileController {
         Optional<User> existingUserOpt = userRepository.findById(userId);
         String newProfileCaption = body.get("newProfileCaption");
 
-        if (!existingUserOpt.isPresent()) {
+        if (existingUserOpt.isEmpty()) {
             return new ResponseEntity<>("Error: User not found.", HttpStatus.NOT_FOUND);
         }
 

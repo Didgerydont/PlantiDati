@@ -1,5 +1,8 @@
 package com.project.springboot.plantidati.controllers;
 
+import com.project.springboot.plantidati.controllers.dto.AuthenticationRequest;
+import com.project.springboot.plantidati.controllers.dto.AuthenticationResponse;
+import com.project.springboot.plantidati.controllers.dto.RegisterRequest;
 import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.repository.UserRepository;
 import com.project.springboot.plantidati.service.AuthenticationService;

@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .then(data => {
         console.log(data);
 
-        // Store the userId and location in the global variable
-        userId = data.userId;
-        userLocation = data.location;
+        // Save the userId and location in localStorage
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('userLocation', data.location);
 
         // Insert user data into HTML
         document.getElementById('username').textContent = data.username;

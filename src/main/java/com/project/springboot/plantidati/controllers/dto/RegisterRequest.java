@@ -1,4 +1,4 @@
-package com.project.springboot.plantidati.controllers;
+package com.project.springboot.plantidati.controllers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

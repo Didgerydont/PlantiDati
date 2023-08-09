@@ -5,8 +5,8 @@ fetch('/plant/getAll')
         let plantSelect = document.getElementById('plantId');
         data.forEach(plant => {
             let option = document.createElement('option');
-            option.value = plant.plant_Id;
-            option.text = plant.plant_name;
+            option.value = plant.plantId;
+            option.text = plant.plantName;
             plantSelect.add(option);
         });
     });
@@ -17,8 +17,11 @@ document.getElementById('calendarForm').addEventListener('submit', function(even
 
     let title = document.getElementById('title').value;
     let userId = localStorage.getItem('userId');
+    console.log(userId);
     let location = localStorage.getItem('userLocation');
+    console.log(location);
     let plantId = document.getElementById('plantId').value;
+
 
     // Create calendar with the information from the form
     fetch('/calendar/create', {

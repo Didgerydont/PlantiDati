@@ -38,7 +38,8 @@ public class SecurityConfig {
                             .requestMatchers("/", "/index", "/login", "/auth/isusernametaken",
                                     "/auth/register", "/registrationpage", "/viewcalendar", "/data",
                                     "/content", "/auth/authenticate", "/registrationsuccess",
-                                    "/plant/getAll").permitAll()
+                                    "/plant/getAll", "/variety/plant/{plantId}",
+                                    "plant/varieties/{plantId}").permitAll()
                             // Specify endpoints only accessable to authorised users
                             .requestMatchers("/profile", "/auth/getProfile", "/forum",
                                     "/createCalendar", "/profile/uploadProfilePic",

@@ -6,16 +6,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ForumThread")
+@Table(name = "forum_thread")
 public class ForumThread {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "thread_Id")
+    @Column(name = "thread_id")
     private int threadId;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference(value = "user-thread")
     private User user;
 

@@ -11,19 +11,19 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "Calendar")
+@Table(name = "calendar")
 public class Calendar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "calendar_Id")
+    @Column(name = "calendar_id")
     private int calendarId;
 
     @Column(name = "title", nullable = false)
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
 
@@ -31,8 +31,10 @@ public class Calendar {
     private String location;
 
     @ManyToOne
-    @JoinColumn(name = "plant_Id", nullable = false)
-    private Plant plant;
+    @JoinColumn(name = "variety_id", referencedColumnName = "variety_id")
+    @JsonBackReference
+    private Variety variety;
+
 
     // OneToMany annotation, defining a one-to-many relationship with the CalendarEntry entity
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, orphanRemoval = true)

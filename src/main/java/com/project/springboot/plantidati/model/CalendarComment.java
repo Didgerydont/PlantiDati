@@ -12,29 +12,29 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Table(name = "CalendarComment")
+@Table(name = "calendar_comment")
 public class CalendarComment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_Id")
+    @Column(name = "comment_id")
     private int commentId;
 
     @ManyToOne
-    @JoinColumn(name = "calendar_Id", nullable = false)
+    @JoinColumn(name = "calendar_id", nullable = false)
     @JsonBackReference(value = "calendar-comment")
     private Calendar calendar;
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "calendar_Id", referencedColumnName = "calendar_Id", insertable = false, updatable = false),
-            @JoinColumn(name = "entry_Id", referencedColumnName = "entry_Id", insertable = false, updatable = false)
+            @JoinColumn(name = "calendar_id", referencedColumnName = "calendar_Id", insertable = false, updatable = false),
+            @JoinColumn(name = "entry_id", referencedColumnName = "entry_Id", insertable = false, updatable = false)
     })
     @JsonBackReference(value = "entry-comment")
     private CalendarEntry entry;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference(value = "user-comment")
     private User user;
 
@@ -102,7 +102,6 @@ public class CalendarComment implements Serializable {
                 entry.equals(that.entry) &&
                 user.equals(that.user);
     }
-
 
     @Override
     public int hashCode() {

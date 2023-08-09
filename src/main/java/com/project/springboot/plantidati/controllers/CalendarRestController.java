@@ -1,16 +1,18 @@
 package com.project.springboot.plantidati.controllers;
 
 import com.project.springboot.plantidati.exception.EntityNotFoundException;
-import com.project.springboot.plantidati.model.Plant;
+import com.project.springboot.plantidati.exception.UserNotFoundException;
 import com.project.springboot.plantidati.model.User;
+import com.project.springboot.plantidati.model.Variety;
+import com.project.springboot.plantidati.model.dto.CreateCalendarRequest;
 import com.project.springboot.plantidati.service.CalendarService;
-import com.project.springboot.plantidati.service.PlantService;
 import com.project.springboot.plantidati.service.UserService;
+import com.project.springboot.plantidati.service.VarietyService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
@@ -25,18 +27,15 @@ public class CalendarRestController {
     private CalendarService calendarService;
 
     @Autowired
-    private PlantService plantService;
+    private VarietyService varietyService;
 
     @PostMapping("/create")
-    public void createCalendar(@RequestParam("userId") int userId,
-                               @RequestParam("title") String title,
-                               @RequestParam("location") String location,
-                               @RequestParam("plantId") int plantId) {
-        User user = userService.findUserById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User with id " + userId + " not found"));
-        Plant plant = plantService.findById(plantId)
-                .orElseThrow(() -> new EntityNotFoundException("Plant with id " + plantId + " not found"));
-        calendarService.createCalendar(user, title, location, plant);
+    public void createCalendar(@RequestBody CreateCalendarRequest request) {
+        User user = userService.findUserById(request.getUserId())
+                .orElseThrow(() -> new UserNotFoundException("User with id " + request.getUserId() + " not found"));
+        Variety variety = varietyService.findById(request.getVarietyId())
+                .orElseThrow(() -> new EntityNotFoundException("Variety with id " + request.getVarietyId() + " not found"));
+        calendarService.createCalendar(user, request.getTitle(), request.getLocation(), variety);
     }
 
 

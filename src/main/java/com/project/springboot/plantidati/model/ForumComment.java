@@ -6,21 +6,21 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "ForumComment")
+@Table(name = "forum_comment")
 public class ForumComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_Id")
+    @Column(name = "comment_id")
     private int commentId;
 
     @ManyToOne
-    @JoinColumn(name = "thread_Id", nullable = false)
+    @JoinColumn(name = "thread_id", nullable = false)
     @JsonBackReference(value = "thread-comment")
     private ForumThread thread;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference(value = "user-forumcomment")
     private User user;
 

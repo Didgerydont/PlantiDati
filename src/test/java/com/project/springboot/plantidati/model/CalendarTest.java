@@ -9,13 +9,13 @@ public class CalendarTest {
 
     private Calendar calendar;
     private User user;
-    private Plant plant;
+    private Variety variety;
 
     @BeforeEach
     public void setUp() {
         calendar = new Calendar();
         user = new User();
-        plant = new Plant();
+        variety = new Variety();
 
     }
 
@@ -32,8 +32,8 @@ public class CalendarTest {
     }
 
     @Test
-    public void testGetPlant() {
-        calendar.setPlant(plant);
-        assertEquals(plant, calendar.getPlant());
+    public void testGetVariety() {
+        calendar.setVariety(variety);
+        assertEquals(variety, calendar.getVariety());
     }
 }
