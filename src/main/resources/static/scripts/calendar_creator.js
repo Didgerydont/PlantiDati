@@ -10,77 +10,40 @@ fetch('/plant/getAll')
             plantSelect.add(option);
         });
 
-
         plantSelect.addEventListener('change', function(event) {
-            let selectedPlantId = this.value;  // 'this' refers to the select element
+            let selectedPlantId = this.value;
             localStorage.setItem('plantId', selectedPlantId);
+            fetchAndPopulateVarieties(selectedPlantId);  // Refresh varieties on plant change
         });
     });
 
-// Event listener for when the combined form is submitted
 document.getElementById('combinedForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     let title = document.getElementById('title').value;
     let userId = localStorage.getItem('userId');
     let location = localStorage.getItem('userLocation');
-    let plantId = document.getElementById('plantId').value;
+    let plantId = localStorage.getItem('plantId');
 
-    // Get selected variety
     let selectedVarietyRadio = document.querySelector('input[name="variety"]:checked');
     let selectedVarietyId = selectedVarietyRadio ? selectedVarietyRadio.value : null;
 
-    // If the new variety checkbox is selected, then create a new variety
     if (document.querySelector("#newVarietyCheckbox").checked) {
-        let newVarietyName = document.querySelector("#newVarietyName").value;
-        let newVarietyDescription = document.querySelector("#newVarietyDescription").value;
+        let name = document.querySelector("#newVarietyName").value;
+        let description = document.querySelector("#newVarietyDescription").value;
 
-        createNewVariety(plantId, newVarietyName, newVarietyDescription)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.error('Error creating new variety.');
-                return null;
-            }
-        })
-        .then(varietyId => {
-            if(varietyId) {
-                createCalendar(title, userId, location, varietyId);
-            }
-        });
-
+        createNewVariety(plantId, name, description)
+            .then(response => response.json())
+            .then(variety => {
+                if (variety && variety.varietyId) {
+                    createCalendar(title, userId, location, variety.varietyId);
+                } else {
+                    console.error('Error creating new variety or variety ID missing.');
+                }
+            });
     } else {
         createCalendar(title, userId, location, selectedVarietyId);
     }
-});
-
-function createCalendar(title, userId, location, varietyId) {
-    fetch('/calendar/create', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            title: title,
-            userId: userId,
-            location: location,
-            varietyId: varietyId
-        })
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Calendar created successfully!');
-
-        } else {
-            console.error('Error creating calendar: ' + response.statusText);
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    let plantId = localStorage.getItem('plantId');
-    fetchAndPopulateVarieties(plantId);
 });
 
 document.querySelector("#newVarietyCheckbox").addEventListener('change', (event) => {
@@ -112,6 +75,8 @@ function fetchAndPopulateVarieties(plantId) {
     })
     .then(varieties => {
         let varietyRadioDiv = document.querySelector("#varietyRadio");
+        // Clear the previous varieties
+        varietyRadioDiv.innerHTML = '';
         varieties.forEach(variety => {
             let containerDiv = document.createElement('div');
             containerDiv.className = 'variety-container';
@@ -137,7 +102,7 @@ function fetchAndPopulateVarieties(plantId) {
 
 }
 
-function createNewVariety(plantId, newVarietyName, newVarietyDescription) {
+function createNewVariety(plantId, name, description) {
     return fetch(`/variety/createVariety`, {
         method: "POST",
         headers: {
@@ -145,11 +110,34 @@ function createNewVariety(plantId, newVarietyName, newVarietyDescription) {
         },
         credentials: 'include',
         body: JSON.stringify({
-            variety: {
-                varietyName: newVarietyName,
-                varietyDescription: newVarietyDescription
-            },
-            plantId: plantId
+            name: name,
+            description: description,
+            plantId: parseInt(plantId) // Ensure plantId is sent as an integer
         })
     });
 }
+
+function createCalendar(title, userId, location, varietyId) {
+    fetch('/calendar/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            title: title,
+            userId: userId,
+            location: location,
+            varietyId: varietyId
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Calendar created successfully!');
+            window.alert('Calendar created successfully!');
+        } else {
+            console.error('Error creating calendar: ' + response.statusText);
+        }
+    });
+}
+

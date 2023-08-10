@@ -27,11 +27,7 @@
                 </div>
 
                 <div class="mb-3" id="varietyDiv">
-                    <label class="form-label">Variety</label>
-                    <div>
-                        <input type="checkbox" id="newVarietyCheckbox"/>
-                        <label for="newVarietyCheckbox">Add a New Variety</label>
-                    </div>
+                    <label class="form-label">Select or add your Variety</label>
                     <fieldset id="varietyRadio">
                         <legend>Select an existing variety</legend>
                         <!-- Varieties populated by JS with a radio button for each -->
@@ -42,7 +38,13 @@
                         <textarea id="newVarietyDescription" class="form-control"
                                   placeholder="New Variety Description" aria-describedby="informationBox"></textarea>
                     </div>
+                    <div>
+                        <input type="checkbox" id="newVarietyCheckbox"/>
+                        <label for="newVarietyCheckbox">Add a New Variety</label>
+                    </div>
                 </div>
+                <input type="hidden" id="varietyIdHidden" name="varietyIdHidden" value="">
+
 
                 <!-- Information -->
                 <div id="informationBox" role="alert">

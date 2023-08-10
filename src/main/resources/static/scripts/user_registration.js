@@ -33,16 +33,27 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         }
     })
     .then(function(data) {
-        console.log('Success:', data);
-        // Redirect the user to the registration success page
-        window.location.href = "/profile";
+        console.log('Registration Success:', data);
+
+        // Show a success message
+        var successMessage = document.createElement('div');
+        successMessage.textContent = "Registration successful! Redirecting to login...";
+        successMessage.style.color = 'green';
+        document.body.appendChild(successMessage);
+
+        // Introduce a delay before redirecting
+        return new Promise(resolve => setTimeout(resolve, 1000));
+    })
+    .then(function() {
+        // Redirect the user to the login page
+        window.location.href = "/login";
     })
     .catch(function(error) {
         // Log the error for debugging
         console.error('Error:', error);
 
         // Show a generic error message to the user
-        document.getElementById('usernameError').textContent = 'An error occurred while checking the username. Please try again later.';
+        document.getElementById('usernameError').textContent = 'An error occurred. Please try again later.';
         document.getElementById('usernameError').style.display = 'block';
     });
 });

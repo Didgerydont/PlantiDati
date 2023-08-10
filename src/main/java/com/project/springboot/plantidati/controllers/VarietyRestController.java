@@ -36,23 +36,15 @@ public class VarietyRestController {
     public ResponseEntity<?> createVariety(@RequestBody Map<String, Object> request) {
 
         // Check presence of required keys
-        if (!request.containsKey("name") || !request.containsKey("description") || !request.containsKey("plantId")) {
-            logger.error("Missing name, description or plantId in request");
+        if (!request.containsKey("name")) {
+            logger.error("No name in request");
             return new ResponseEntity<>("Missing name, description or plantId in request", HttpStatus.BAD_REQUEST);
-        }
-
-        // Type check and cast for variety data
-        Object varietyObj = request.get("variety");
-        if (!(varietyObj instanceof Map)) {
-            logger.error("Invalid variety data format");
-            return new ResponseEntity<>("Invalid variety data format", HttpStatus.BAD_REQUEST);
-        }
-        Map<String, String> varietyData = (Map<String, String>) varietyObj;
-
-        // Check for required variety data fields
-        if (!varietyData.containsKey("varietyName") || !varietyData.containsKey("varietyDescription")) {
-            logger.error("Missing variety name or description in request");
-            return new ResponseEntity<>("Missing variety name or description in request", HttpStatus.BAD_REQUEST);
+        } else if (!request.containsKey("description")) {
+            logger.error("No description in request");
+            return new ResponseEntity<>("No description in request", HttpStatus.BAD_REQUEST);
+        } else if (!request.containsKey("plantId")) {
+            logger.error("No plantId in request");
+            return new ResponseEntity<>("No plantId in request", HttpStatus.BAD_REQUEST);
         }
 
         // Type check and cast for plantId
@@ -69,9 +61,13 @@ public class VarietyRestController {
             return new ResponseEntity<>("No Plant found with given ID", HttpStatus.BAD_REQUEST);
         }
 
+        // Directly get name and description from the request body
+        String name = (String) request.get("name");
+        String description = (String) request.get("description");
+
         Variety variety = new Variety();
-        variety.setVarietyName(varietyData.get("varietyName"));
-        variety.setVarietyDescription(varietyData.get("varietyDescription"));
+        variety.setVarietyName(name);
+        variety.setVarietyDescription(description);
         variety.setPlant(plantOptional.get());
 
         Variety newVariety = varietyService.save(variety);
