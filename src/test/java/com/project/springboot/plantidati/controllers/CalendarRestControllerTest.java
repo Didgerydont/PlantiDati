@@ -1,10 +1,10 @@
 package com.project.springboot.plantidati.controllers;
 
+import com.project.springboot.plantidati.controllers.dto.CreateCalendarRequest;
 import com.project.springboot.plantidati.exception.EntityNotFoundException;
 import com.project.springboot.plantidati.model.Plant;
 import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.model.Variety;
-import com.project.springboot.plantidati.model.dto.CreateCalendarRequest;
 import com.project.springboot.plantidati.service.CalendarService;
 import com.project.springboot.plantidati.service.PlantService;
 import com.project.springboot.plantidati.service.UserService;

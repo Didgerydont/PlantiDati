@@ -61,12 +61,13 @@
 
     <!-- Todo - figure out better system for change password -->
 
-    <!-- Todo - add calendars and forum-->
+
+    <!-- Calendars-->
     <h2 class="mt-5">Your Calendars</h2>
     <a th:href="@{calendarCreate}">Create new Calendar?</a>
-    <ul id="calendars" class="list-group">
-        <!-- Calendars will be inserted here via JavaScript -->
-    </ul>
+    <!-- Let Javascript display the calendars-->
+    <div id="calendarsContainer"></div>
+
 
     <h2 class="mt-5">Forum Activity</h2>
     <ul id="forum" class="list-group">

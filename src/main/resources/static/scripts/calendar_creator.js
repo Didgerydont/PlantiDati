@@ -65,7 +65,7 @@ document.querySelector("#varietyRadio").addEventListener('change', (event) => {
 });
 
 function fetchAndPopulateVarieties(plantId) {
-    fetch(`/variety/plant/${plantId}`, { credentials: 'include' })
+    fetch(`/variety/getVarietiesByPlantId/${plantId}`, { credentials: 'include' })
     .then(response => {
         console.log("Response Status: ", response.status);
         if (!response.ok) {
@@ -134,10 +134,20 @@ function createCalendar(title, userId, location, varietyId) {
     .then(response => {
         if (response.ok) {
             console.log('Calendar created successfully!');
-            window.alert('Calendar created successfully!');
+
+            // Display the success message in the notification div
+            const informationBox = document.getElementById('informationBox');
+            informationBox.textContent = 'Calendar created successfully!';
+            informationBox.classList.remove('hidden');
+
+            // After 2 seconds, redirect
+            setTimeout(() => {
+                window.location.href = '/calendarEntry';
+            }, 2000);
         } else {
             console.error('Error creating calendar: ' + response.statusText);
         }
     });
 }
+
 

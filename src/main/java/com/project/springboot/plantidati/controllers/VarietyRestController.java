@@ -1,5 +1,6 @@
 package com.project.springboot.plantidati.controllers;
 
+import com.project.springboot.plantidati.controllers.dto.CreateVarietyRequestDTO;
 import com.project.springboot.plantidati.model.Plant;
 import com.project.springboot.plantidati.model.Variety;
 import com.project.springboot.plantidati.service.PlantService;
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class VarietyRestController {
     @Autowired
     private PlantService plantService;
 
-    @GetMapping("/plant/{plantId}")
+    @GetMapping("/getVarietiesByPlantId/{plantId}")
     public ResponseEntity<List<Variety>> getVarietiesByPlantId(@PathVariable("plantId") int plantId) {
         List<Variety> varieties = varietyService.findByPlantId(plantId);
         return ResponseEntity.ok(varieties);
@@ -33,41 +33,17 @@ public class VarietyRestController {
 
 
     @PostMapping("/createVariety")
-    public ResponseEntity<?> createVariety(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<?> createVariety(@RequestBody CreateVarietyRequestDTO request) {
 
-        // Check presence of required keys
-        if (!request.containsKey("name")) {
-            logger.error("No name in request");
-            return new ResponseEntity<>("Missing name, description or plantId in request", HttpStatus.BAD_REQUEST);
-        } else if (!request.containsKey("description")) {
-            logger.error("No description in request");
-            return new ResponseEntity<>("No description in request", HttpStatus.BAD_REQUEST);
-        } else if (!request.containsKey("plantId")) {
-            logger.error("No plantId in request");
-            return new ResponseEntity<>("No plantId in request", HttpStatus.BAD_REQUEST);
-        }
-
-        // Type check and cast for plantId
-        Object plantIdObj = request.get("plantId");
-        if (!(plantIdObj instanceof Integer)) {
-            logger.error("Invalid plantId format");
-            return new ResponseEntity<>("Invalid plantId format", HttpStatus.BAD_REQUEST);
-        }
-        int plantId = (Integer) plantIdObj;
-
-        Optional<Plant> plantOptional = plantService.findById(plantId);
+        Optional<Plant> plantOptional = plantService.findById(request.getPlantId());
         if (plantOptional.isEmpty()) {
             logger.error("No Plant found with given ID");
             return new ResponseEntity<>("No Plant found with given ID", HttpStatus.BAD_REQUEST);
         }
 
-        // Directly get name and description from the request body
-        String name = (String) request.get("name");
-        String description = (String) request.get("description");
-
         Variety variety = new Variety();
-        variety.setVarietyName(name);
-        variety.setVarietyDescription(description);
+        variety.setVarietyName(request.getName());
+        variety.setVarietyDescription(request.getDescription());
         variety.setPlant(plantOptional.get());
 
         Variety newVariety = varietyService.save(variety);

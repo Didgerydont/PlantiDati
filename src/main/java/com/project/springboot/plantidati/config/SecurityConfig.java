@@ -31,6 +31,11 @@ public class SecurityConfig {
                 // Configure CORS
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
+
+                // Handle Unauthorized requests
+//                .exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+//                .and()
+
                 // Configure authorization rules
                 .authorizeHttpRequests(authorize -> {
                     // Endpoints that are available for all users
@@ -38,16 +43,16 @@ public class SecurityConfig {
                             .requestMatchers("/", "/index", "/login", "/error", "/auth/isusernametaken",
                                     "/auth/register", "/registrationpage", "/viewcalendar", "/data",
                                     "/content", "/auth/authenticate", "/registrationsuccess",
-                                    "/plant/getAll", "/variety/plant/{plantId}",
-                                    "plant/varieties/{plantId}").permitAll()
+                                    "/plant/getAll", "/variety/getVarietiesByPlantId/{plantId}",
+                                    "plant/varieties/{plantId}", "calendar/getUserCalendars/{userId}").permitAll()
                             // Specify endpoints only accessable to authorised users
                             .requestMatchers("/profile", "/auth/getProfile", "/forum",
                                     "/createCalendar", "/profile/uploadProfilePic",
                                     "/profile/{userId}/updatePassword",
                                     "/profile/{userId}/updateLocation",
                                     "/profile/{userId}/updateProfileCaption",
-                                    "/calendarCreate", "/calendar/create",
-                                    "/firstCalendarEntry", "/calendarentry/createfirstcalenderentry",
+                                    "/calendarCreate", "/calendarEntry",
+                                    "/calendar/create",
                                     "/variety/createVariety").authenticated()
                             // Authorise Static Resources
                             .requestMatchers("/css/**", "/images/**", "/scripts/**").permitAll()

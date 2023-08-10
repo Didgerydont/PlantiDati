@@ -1,5 +1,6 @@
 package com.project.springboot.plantidati.controllers;
 
+import com.project.springboot.plantidati.controllers.dto.CreateVarietyRequestDTO;
 import com.project.springboot.plantidati.model.Plant;
 import com.project.springboot.plantidati.model.Variety;
 import com.project.springboot.plantidati.service.PlantService;
@@ -12,7 +13,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -62,14 +66,10 @@ public class VarietyRestControllerTest {
         when(plantService.findById(anyInt())).thenReturn(Optional.of(plant));
         when(varietyService.save(any(Variety.class))).thenReturn(variety);
 
-        Map<String, Object> request = new HashMap<>();
-        Map<String, String> varietyData = new HashMap<>();
-        varietyData.put("varietyName", "Variety A");
-        varietyData.put("varietyDescription", "Description A");
-        request.put("variety", varietyData);
-        request.put("name", "Test Name");
-        request.put("description", "Test Description");
-        request.put("plantId", 1);
+        CreateVarietyRequestDTO request = new CreateVarietyRequestDTO();
+        request.setName("Test Name");
+        request.setDescription("Test Description");
+        request.setPlantId(1);
 
         ResponseEntity<?> response = varietyRestController.createVariety(request);
 
@@ -79,7 +79,7 @@ public class VarietyRestControllerTest {
 
     @Test
     public void createVarietyMissingDataTest() {
-        Map<String, Object> request = new HashMap<>();
+        CreateVarietyRequestDTO request = new CreateVarietyRequestDTO();
         ResponseEntity<?> response = varietyRestController.createVariety(request);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }

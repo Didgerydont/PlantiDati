@@ -30,7 +30,7 @@ public class Calendar {
     @Column(name = "location", nullable = false)
     private String location;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "variety_id", referencedColumnName = "variety_id")
     @JsonBackReference
     private Variety variety;

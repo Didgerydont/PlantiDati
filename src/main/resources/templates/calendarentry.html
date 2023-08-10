@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/thehead :: thehead}"></head>
+
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
+
+<div class="container mt-5">
+
+    <form id="calendarEntryForm">
+
+        <!-- Date -->
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" required max="">
+            <div class="error-message" id="dateError"></div>
+        </div>
+
+        <!-- Day Temperature -->
+        <div class="mb-3">
+            <label for="dayTemp" class="form-label">Day Temperature</label>
+            <input type="number" class="form-control" id="dayTemp" name="dayTemp">
+            <div class="error-message" id="dayTempError"></div>
+        </div>
+
+        <!-- Night Temperature -->
+        <div class="mb-3">
+            <label for="nightTemp" class="form-label">Night Temperature</label>
+            <input type="number" class="form-control" id="nightTemp" name="nightTemp">
+            <div class="error-message" id="nightTempError"></div>
+        </div>
+
+        <!-- Water Amount -->
+        <div class="mb-3">
+            <label for="waterAmount" class="form-label">Water Amount</label>
+            <input type="number" step="0.01" class="form-control" id="waterAmount" name="waterAmount">
+            <div class="error-message" id="waterAmountError"></div>
+        </div>
+
+        <!-- Nutrient Amount -->
+        <div class="mb-3">
+            <label for="nutrientAmount" class="form-label">Nutrient Amount</label>
+            <input type="number" step="0.01" class="form-control" id="nutrientAmount" name="nutrientAmount">
+            <div class="error-message" id="nutrientAmountError"></div>
+        </div>
+
+        <!-- Height -->
+        <div class="mb-3">
+            <label for="height" class="form-label">Height</label>
+            <input type="number" class="form-control" id="height" name="height">
+            <div class="error-message" id="heightError"></div>
+        </div>
+
+        <!-- Width -->
+        <div class="mb-3">
+            <label for="width" class="form-label">Width</label>
+            <input type="number" class="form-control" id="width" name="width">
+            <div class="error-message" id="widthError"></div>
+        </div>
+
+        <!-- Growth Stage -->
+        <div class="mb-3">
+            <label class="form-label">Growth Stage</label>
+            <div>
+                <input type="radio" class="form-check-input" id="sprout" name="growthStage" value="1">
+                <label for="sprout" class="form-check-label">Sprout</label>
+            </div>
+            <div>
+                <input type="radio" class="form-check-input" id="vegetative" name="growthStage" value="2">
+                <label for="vegetative" class="form-check-label">Vegetative</label>
+            </div>
+            <div>
+                <input type="radio" class="form-check-input" id="budding" name="growthStage" value="3">
+                <label for="budding" class="form-check-label">Budding</label>
+            </div>
+            <div>
+                <input type="radio" class="form-check-input" id="flowering" name="growthStage" value="4">
+                <label for="flowering" class="form-check-label">Flowering</label>
+            </div>
+            <div>
+                <input type="radio" class="form-check-input" id="ripening" name="growthStage" value="5">
+                <label for="ripening" class="form-check-label">Ripening</label>
+            </div>
+            <div class="error-message" id="growthStageError"></div>
+        </div>
+
+
+        <!-- Pest Issues -->
+        <div class="mb-3">
+            <label for="pestIssues" class="form-label">Pest Issues</label>
+            <input type="checkbox" class="form-check-input" id="pestIssues" name="pestIssues">
+
+        </div>
+
+        <!-- Pest Impact -->
+        <div class="mb-3">
+            <label for="pestImpact" class="form-label">Pest Impact</label>
+            <input type="number" class="form-control" id="pestImpact" name="pestImpact" min="1" max="10">
+            <div class="error-message" id="pestImpactError"></div>
+        </div>
+
+        <!-- Disease Issues -->
+        <div class="mb-3">
+            <label for="diseaseIssues" class="form-label">Disease Issues</label>
+            <input type="checkbox" class="form-check-input" id="diseaseIssues" name="diseaseIssues">
+
+        </div>
+
+        <!-- Disease Impact -->
+        <div class="mb-3">
+            <label for="diseaseImpact" class="form-label">Disease Impact</label>
+            <input type="number" class="form-control" id="diseaseImpact" name="diseaseImpact" min="1" max="10">
+            <div class="error-message" id="diseaseImpactError"></div>
+        </div>
+
+        <!-- Comment -->
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea class="form-control" id="comment" rows="4" name="comment"></textarea>
+            <div class="error-message" id="commentError"></div>
+        </div>
+
+        <!-- Light Amount -->
+        <div class="mb-3">
+            <label for="lightAmount" class="form-label">Light Amount</label>
+            <input type="number" class="form-control" id="lightAmount" name="lightAmount" min="1" max="10">
+            <div class="error-message" id="lightAmountError"></div>
+        </div>
+
+        <!-- Harvested -->
+        <div class="mb-3" id="harvestDiv">
+            <label for="harvested" class="form-label">Harvested</label>
+            <input type="checkbox" class="form-check-input" id="harvested" name="harvested">
+        </div>
+
+        <!-- Yield -->
+        <div class="mb-3">
+            <label for="yield" class="form-label">Yield</label>
+            <input type="number" step="0.01" class="form-control" id="yield" name="yield">
+            <div class="error-message" id="yieldError"></div>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
+<script th:src="@{/scripts/calendar_entry.js}"></script>
+
+</body>
+</html>

@@ -38,3 +38,15 @@
     display: flex;
     align-items: center;
 }
+
+
+/* Calendar Entry */
+.error-message {
+    color: red;
+    display: none;
+    font-size: 12px;
+}
+
+#harvestedDiv {
+    display: none;
+}

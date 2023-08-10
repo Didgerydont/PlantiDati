@@ -70,6 +70,12 @@ public class WebController {
 
         return "calendarCreationform";
     }
-    
+
+    @GetMapping("calendarEntry")
+    public String calendarEntry(Model model) {
+
+        return "calendarEntry";
+        
+    }
 
 }

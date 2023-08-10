@@ -1,4 +1,4 @@
-package com.project.springboot.plantidati.model.dto;
+package com.project.springboot.plantidati.controllers.dto;
 
 import lombok.Getter;
 import lombok.Setter;

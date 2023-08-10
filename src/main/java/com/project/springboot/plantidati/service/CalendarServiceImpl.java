@@ -7,6 +7,8 @@ import com.project.springboot.plantidati.repository.CalendarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CalendarServiceImpl implements CalendarService {
 
@@ -30,6 +32,11 @@ public class CalendarServiceImpl implements CalendarService {
         calendar.setVariety(variety);
 
         return calendarRepository.save(calendar);
+    }
+
+    @Override
+    public List<Calendar> getAllCalendarsByUserId(int userId) {
+        return calendarRepository.findByUserId(userId);
     }
 
 
