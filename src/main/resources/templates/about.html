@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/thehead :: thehead}"></head>
+
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
+
+<!-- Hero Section -->
+<div class="container-fluid bg-light py-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h1>About Planti Dati</h1>
+            <p class="lead">Welcome to our unique gardening platform, the definitive destination for growers across the
+                globe.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Our Mission -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Our Mission</h2>
+            <p>This interactive, user-driven platform is designed to bridge the gap between experienced horticulturists
+                and those just beginning their journey in the world of plants.
+            </p>
+            <p>Our platform stands as the first of its kind to harness the voluntary contributions of growers from
+                various locations, offering a comprehensive repository of invaluable plant-growing knowledge and
+                insights.
+            </p>
+        </div>
+        <!-- Will need to find suitable image for below. -->
+        <!--        <div class="col-lg-6">-->
+        <!--            <img src="" alt="Image depicting the mission" class="img-fluid">-->
+        <!--        </div>-->
+    </div>
+</div>
+
+<!-- Features -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6 order-lg-2">
+            <h2>Core Features</h2>
+            <p>The core features of our platform include an expansive, searchable database filled with detailed
+                information about a myriad of plant varieties. This resource serves as a living compendium of plant
+                knowledge, enabling users to research and select plants that best suit their needs and environments.
+            </p>
+            <p>For a more personalized experience, registered users can create their own calendars. By providing
+                insights into plant growth in different conditions and regions, these calendars contribute to our
+                collective knowledge base.
+            </p>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+            <!-- You can add an image here that represents your features -->
+            <img src="path_to_feature_image" alt="Image depicting the features" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+<!-- Join Us -->
+<div class="container-fluid bg-light py-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <h2>Join Our Growing Family</h2>
+            <p>As a project rooted in community and the passion for gardening, we aim to continually evolve and expand
+                based on our user's needs. We invite you to join us in this green endeavour, whether you're a seasoned
+                horticulturist, a budding gardener, or simply curious about the world of plants.</p>
+            <!-- Using Bootstrap classes to style an anchor like a button -->
+            <a href="${/registrationpage}" class="btn btn-primary">Join us!</a>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="~{fragments/thefooter :: thefooter}"></div>
+</body>
+
+</html>

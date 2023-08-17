@@ -8,8 +8,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface RetrieveProfileCalendarsMapper {
 
-    @Mapping(target = "varietyDescription", source = "varietyDescription")
-    @Mapping(target = "plantName", source = "plantName")
-    @Mapping(target = "varietyName", source = "varietyName")
+    @Mapping(target = "varietyDescription", source = "variety.varietyDescription")
+    @Mapping(target = "plantName", source = "variety.plant.plantName")
+    @Mapping(target = "varietyName", source = "variety.varietyName")
     RetrieveProfileCalendarsDTO toDTO(Calendar calendar);
 }

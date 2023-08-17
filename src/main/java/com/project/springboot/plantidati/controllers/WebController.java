@@ -44,6 +44,11 @@ public class WebController {
         return "registrationpage";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
 
 //    @GetMapping(value = "/logout")
 //    public String logout() {
@@ -75,7 +80,7 @@ public class WebController {
     public String calendarEntry(Model model) {
 
         return "calendarEntry";
-        
+
     }
 
 }

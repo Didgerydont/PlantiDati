@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> {
                     // Endpoints that are available for all users
                     authorize
-                            .requestMatchers("/", "/index", "/login", "/error", "/auth/isusernametaken",
+                            .requestMatchers("/", "/index", "/about", "/login", "/error", "/auth/isusernametaken",
                                     "/auth/register", "/registrationpage", "/viewcalendar", "/data",
                                     "/content", "/auth/authenticate", "/registrationsuccess",
                                     "/plant/getAll", "/variety/getVarietiesByPlantId/{plantId}",

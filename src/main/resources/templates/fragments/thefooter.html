@@ -2,16 +2,132 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<!-- Footer -->
 <div id="footer" th:fragment="thefooter">
+
+    <!-- Footer  as per https://mdbootstrap.com/snippets/standard/mdbootstrap/2885016?view=side-->
+    <footer class="text-center text-lg-start text-dark" style="background-color: #E8F4EA">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-between p-4 text-dark" style="background-color: #eae8f4">
+            <!-- Left -->
+            <div class="me-5">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+            <!-- Right -->
+            <div>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold">Planti Dati</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                        <p>Outstanding in our field.</p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Our Veggie Allies</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                        <p>
+                            <a href="https://www.bordbia.ie/" class="text-dark">Bord Bia</a>
+                        </p>
+                        <p>
+                            <a href="https://www.teagasc.ie/" class="text-dark">Teasgasc</a>
+                        </p>
+                        <p>
+                            <a href="https://www.ifa.ie/" class="text-dark">Irish Farmers Association</a>
+                        </p>
+                        <p>
+                            <a href="https://www.gov.ie/en/publication/c73a3-food-vision-2030-a-world-leader-in-sustainable-food-systems/"
+                               class="text-dark">Food Vision 2030</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Educational Materials</h6>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                        <p>
+                            <a href="https://www.gardenersworld.com/plants/vegetable-crops-for-beginners/"
+                               class="text-dark">Vegetables for Beginners</a>
+                        </p>
+                        <p>
+                            <a href="https://www.arboretum.ie/vegetable-growing-planner-tips-for-beginners/"
+                               class="text-dark">Grow Planner</a>
+                        </p>
+                        <p>
+                            <a href="https://www.rhs.org.uk/soil-composts-mulches/soil-types" class="text-dark">Soil
+                                types</a>
+                        </p>
+                        <p>
+                            <a href="https://greensideup.ie/10-garden-pests-dont-want-see/" class="text-dark">12 Garden
+                                Pests to watch out for</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold">Contact</h6>
+                        <hr
+                                class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: #7c4dff; height: 2px"
+                        />
+                        <p><i class="fas fa-home mr-3"></i>Ireland</p>
+                        <p><i class="fas fa-envelope mr-3"></i> support@plantidati.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 Copyright:
+            <a class="text-dark" href="#">PlantiDati</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
     <!-- Bootstrap with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-    <!-- Custom JS -->
-    <!--  <script th:src="@{/static/scripts/scripts.js}"></script>-->
 
 </div>
-
 </body>
 </html>

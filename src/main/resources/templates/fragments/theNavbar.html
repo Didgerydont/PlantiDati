@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-
 <body>
 
 <!-- The navbar -->
 <div class="container-fluid" th:fragment="theNavbar">
     <!-- Navbar Start -->
-    <div class="container-fluid bg-white sticky-top">
-        <nav class="navbar navbar-expand-lg bg-success navbar-light py-2 py-lg-0">
+    <div class="container-fluid sticky-top">
+        <nav class="navbar navbar-expand-md navbar-light py-2 py-lg-0 bg-opacity-25 larger-font">
             <a th:href="@{/index}" class="navbar-brand">
                 <img class="img-fluid" th:src="@{/images/logo.png}" alt="Logo">
             </a>
@@ -19,17 +18,18 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
                     <!-- User is logged out -->
-                    <a th:href="@{/registrationpage}" class="nav-item nav-link"
+                    <a th:href="@{/registrationpage}" class="nav-item nav-link mx-2"
                        sec:authorize="isAnonymous()">Register!</a>
 
-
                     <!-- Common links -->
-                    <a th:href="@{/calendars}" class="nav-item nav-link">Calendars</a>
-                    <a th:href="@{/plantidata}" class="nav-item nav-link">PlantiData</a>
+                    <a th:href="@{/calendars}" class="nav-item nav-link mx-2">Calendars</a>
+                    <a th:href="@{/plantidata}" class="nav-item nav-link mx-2">PlantiData</a>
+                    <a th:href="@{/about}" class="nav-item nav-link mx-2">About</a> <!-- Here's the new About link -->
 
                     <!-- Login/Logout -->
-                    <a th:href="@{/login}" class="nav-item nav-link" sec:authorize="isAnonymous()">Sign in</a>
-                    <a th:href="@{/profile}" class="nav-item nav-link" sec:authorize="isAuthenticated()">Profile</a>
+                    <a th:href="@{/login}" class="nav-item nav-link mx-2" sec:authorize="isAnonymous()">Sign in</a>
+                    <a th:href="@{/profile}" class="nav-item nav-link mx-2"
+                       sec:authorize="isAuthenticated()">Profile</a>
                 </div>
             </div>
         </nav>

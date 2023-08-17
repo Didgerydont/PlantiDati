@@ -75,7 +75,7 @@ function displayCalendar(calendar) {
     const title = document.createElement('a');
     title.innerHTML = `<strong>Title:</strong> ${calendar.title ?? "Unknown Title"}`;
     title.href = '#';  // todo Will need to add the Calendar Specific HTML page here
-    title.classList.add('list-group-item', 'list-group-item-action', 'active');
+    title.classList.add('list-group-item', 'list-group-item-action', 'calendar-title-heading');
     listGroup.appendChild(title);
 
     // Add the combined plant name and variety name
