@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    userId;
-    // Monitor for changes to the user's profile and display dynamicly'
+    userId = localStorage.getItem('userId');
+    console.log("Retrieved userId:", userId);
+
+
+    // Monitor for changes to the user's profile and display dynamically
     document.getElementById('profilePicInput').addEventListener('change', updateProfilePic);
     document.getElementById('profileCaptionInput').addEventListener('change', updateProfileCaption);
     document.getElementById('locationInput').addEventListener('change', updateLocation);
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ newlocation : newLocation }),
+                body: JSON.stringify({ newLocation : newLocation }),
                 credentials: 'include'
             });
 
@@ -198,6 +201,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
 
+        console.log('Within update location function userId: ' + userId);
         try {
             let response = await fetch(`/profile/${userId}/updateLocation`, {
                 method: 'PUT',
@@ -225,4 +229,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
             locationResult.style.color = 'red';
         }
     });
+
 });

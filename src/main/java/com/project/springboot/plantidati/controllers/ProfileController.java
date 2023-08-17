@@ -132,26 +132,40 @@ public class ProfileController {
     }
 
     @PutMapping("/{userId}/updateLocation")
-    // Using map so that the update will be recieved in JSON
     public ResponseEntity<String> updateLocation(@PathVariable("userId") int userId, @RequestBody Map<String, String> body) {
+
+        logger.info("Received update location request for user ID: {}", userId);
+
         UserDetails currentUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> existingUserOpt = userRepository.findById(userId);
         String newLocation = body.get("newLocation");
+        if (newLocation == null || newLocation.trim().isEmpty()) {
+            logger.warn("Error: Location cannot be blank.");
+            return new ResponseEntity<>("Error: Location cannot be blank.", HttpStatus.BAD_REQUEST);
+        }
+
 
         if (existingUserOpt.isEmpty()) {
+            logger.warn("User not found for ID: {}", userId);
             return new ResponseEntity<>("Error: User not found.", HttpStatus.NOT_FOUND);
         }
 
         User existingUser = existingUserOpt.get();
 
         if (!existingUser.getUsername().equals(currentUser.getUsername())) {
+            logger.warn("Unauthorized action attempt by user: {}", currentUser.getUsername());
             return new ResponseEntity<>("Error: Unauthorized action.", HttpStatus.UNAUTHORIZED);
         }
 
+        logger.info("Updating location for user: {}", existingUser.getUsername());
+
         existingUser.setLocation(newLocation);
         userRepository.save(existingUser);
+        logger.info("Location updated successfully for user: {}", existingUser.getUsername());
+
         return new ResponseEntity<>("Location updated successfully.", HttpStatus.OK);
     }
+
 
     @PutMapping("/{userId}/updateProfileCaption")
     public ResponseEntity<String> updateProfileCaption(@PathVariable("userId") int userId, @RequestBody Map<String, String> body) {

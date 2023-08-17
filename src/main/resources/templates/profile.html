@@ -6,58 +6,77 @@
 <!-- Navbar -->
 <div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 
-<div class="container mt-5">
-    <h1>Welcome, <span id="username"></span>!</h1>
+<div class="container-fluid">
+    <div class="center-content">
+        <h1 class="">Welcome, <span id="username"></span>!</h1>
 
-    <div class="row mt-4">
-        <!-- Profile Picture Column -->
-        <div class="col-md-4 col-12">
-            <h2>Profile Picture</h2>
-            <div class="profilepagepicture">
-                <img alt="Profile Picture" id="profilePic"/>
-            </div>
-            <a href="#" id="changePic">Change profile picture?</a>
-            <div id="profilePicInput" style="display: none;">
-                <input class="form-control" type="file">
-                <button type="submit" class="btn btn-primary mt-2" id="submitPic">Update Picture</button>
+        <div class="row mt-4 profileopeningrow justify-content-center">
 
-            </div>
-            <div id="picResult" style="display: none;"></div>
-
-        </div>
-
-        <!-- Profile Caption Column -->
-        <div class="col-md-4 col-12 mt-md-0 mt-4">
-            <h2>Profile Caption</h2>
-            <p id="profileCaption"></p>
-            <div>
-                <a href="#" id="changeCaption">Change caption?</a>
-                <div id="profileCaptionInput" style="display: none;">
-                    <textarea class="form-control"></textarea>
-                    <button type="submit" class="btn btn-primary mt-2" id="submitCaption">Update Caption</button>
+            <!-- Profile Picture Section -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Profile Picture</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="profilepagepicture">
+                            <img alt="Profile Picture" id="profilePic"/>
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" id="changePic">Edit</button>
+                        <div id="profilePicInput">
+                            <input class="form-control mt-2" type="file">
+                            <button type="submit" class="btn btn-primary mt-2 center-button" id="submitPic">Update
+                                Picture
+                            </button>
+                        </div>
+                        <div id="picResult"></div>
+                    </div>
                 </div>
-
-                <div id="captionResult" style="display: none;"></div>
             </div>
 
-        </div>
-
-        <!-- Location Column -->
-        <div class="col-md-4 col-12 mt-md-0 mt-4">
-            <h2>Location</h2>
-            <p id="locationText"></p>
-            <div>
-                <a href="#" id="changeLocation">Change location?</a>
-                <div id="locationInput" style="display: none;">
-                    <input class="form-control" type="text">
-                    <button type="submit" class="btn btn-primary mt-2" id="submitLocation">Update Location</button>
+            <!-- Profile Caption Section -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Profile Caption</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <p id="profileCaption"></p>
+                        <button type="button" class="btn btn-primary mt-2" id="changeCaption">Edit</button>
+                        <div id="profileCaptionInput">
+                            <textarea class="form-control mt-2"></textarea>
+                            <button type="submit" class="btn btn-primary mt-2 center-button" id="submitCaption">Update
+                                Caption
+                            </button>
+                        </div>
+                        <div id="captionResult"></div>
+                    </div>
                 </div>
-
-                <div id="locationResult" style="display: none;"></div>
             </div>
 
+            <!-- Location Section -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Location</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <p id="locationText"></p>
+                        <button type="button" class="btn btn-primary mt-2 center-button" id="changeLocation">Edit
+                        </button>
+                        <div id="locationInput">
+                            <input class="form-control mt-2" type="text">
+                            <button type="submit" class="btn btn-primary mt-2 center-button" id="submitLocation">Update
+                                Location
+                            </button>
+                        </div>
+                        <div id="locationResult"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <!-- Todo - figure out better system for change password -->
 
@@ -68,11 +87,6 @@
     <!-- Let Javascript display the calendars-->
     <div id="calendarsContainer"></div>
 
-
-    <h2 class="mt-5">Forum Activity</h2>
-    <ul id="forum" class="list-group">
-        <!-- Forums will be inserted here via JavaScript -->
-    </ul>
 </div>
 
 <!-- Footer -->

@@ -1,6 +1,5 @@
 package com.project.springboot.plantidati.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -52,15 +51,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // Relationship with ForumThread
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference(value = "user-thread")
-    private List<ForumThread> threads;
-
-    // Relationship with ForumComment
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference(value = "user-comment")
-    private List<ForumComment> comments;
 
     // UserDetails overrides
     @Override

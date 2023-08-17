@@ -1,6 +1,3 @@
-let userId = window.userId; // Global variable to hold the user's ID for calling in other method.
-let userLocation = window.userLocation; // Global variable to hold the user's location for calling in other method.
-
 document.addEventListener('DOMContentLoaded', (event) => {
     // Fetch the profile now that the user is logged in
     fetch('/auth/getProfile', {
@@ -13,6 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // Save the userId and location in localStorage
         localStorage.setItem('userId', data.userId);
+        console.log(localStorage.getItem('userId'));
         localStorage.setItem('userLocation', data.location);
 
         // Insert user data into HTML
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         document.getElementById('locationText').textContent = data.location;
 
-        // todo must add calendars and forum here
 
         // Display calendars
         fetchAllCalendars(data.userId);
@@ -57,6 +54,7 @@ function fetchAllCalendars(userId) {
         console.log(data);
         // Call the displayCalendar function for each calendar in the data
         data.forEach(calendar => {
+        console.log(calendar);
         displayCalendar(calendar);
             });
     })
@@ -65,7 +63,6 @@ function fetchAllCalendars(userId) {
     });
 }
 
-// Display the users calendars
 function displayCalendar(calendar) {
     // Get the container where you'd like to display the calendars
     const container = document.getElementById('calendarsContainer');
@@ -76,27 +73,28 @@ function displayCalendar(calendar) {
 
     // Add the title
     const title = document.createElement('a');
-    title.textContent = calendar.title ?? "Unknown Title";
+    title.innerHTML = `<strong>Title:</strong> ${calendar.title ?? "Unknown Title"}`;
     title.href = '#';  // todo Will need to add the Calendar Specific HTML page here
     title.classList.add('list-group-item', 'list-group-item-action', 'active');
     listGroup.appendChild(title);
 
-    // Add the plant name
-    const plantName = document.createElement('li');
-    const plantNameText = calendar.variety?.plant?.name ?? "Unknown Plant";
-    plantName.textContent = `Plant Name: ${plantNameText}`;
-    plantName.classList.add('list-group-item');
-    listGroup.appendChild(plantName);
+    // Add the combined plant name and variety name
+    const plantAndVariety = document.createElement('li');
+    const plantNameText = `<strong>Plant Name:</strong> ${calendar.plantName ?? "Unknown Plant"}`;
+    const varietyNameText = `<strong>Variety Name:</strong> ${calendar.varietyName ?? "Unknown Variety"}`;
+    plantAndVariety.innerHTML = `${plantNameText}, ${varietyNameText}`;
+    plantAndVariety.classList.add('list-group-item');
+    listGroup.appendChild(plantAndVariety);
 
-    // Add the variety
+    // Add the variety description
     const variety = document.createElement('li');
-    variety.textContent = `Variety: ${calendar.variety?.name ?? "Unknown Variety"}`;
+    variety.innerHTML = `<strong>Variety:</strong> ${calendar.varietyDescription ?? "Unknown Variety"}`;
     variety.classList.add('list-group-item');
     listGroup.appendChild(variety);
 
     // Add the location
     const location = document.createElement('li');
-    location.textContent = `Location: ${calendar.location ?? "Unknown Location"}`;
+    location.innerHTML = `<strong>Location:</strong> ${calendar.location ?? "Unknown Location"}`;
     location.classList.add('list-group-item');
     listGroup.appendChild(location);
 

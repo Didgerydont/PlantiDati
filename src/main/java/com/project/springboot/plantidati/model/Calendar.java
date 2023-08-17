@@ -50,5 +50,17 @@ public class Calendar {
         this.entries = entries;
     }
 
+    public String getVarietyName() {
+        return (variety != null) ? variety.getVarietyName() : null;
+    }
+
+    public String getVarietyDescription() {
+        return (variety != null) ? variety.getVarietyDescription() : null;
+    }
+
+    public String getPlantName() {
+        return (variety != null && variety.getPlant() != null) ? variety.getPlant().getPlantName() : null;
+    }
+
 
 }

@@ -1,25 +1,28 @@
 package com.project.springboot.plantidati.controllers;
 
 import com.project.springboot.plantidati.controllers.dto.CreateCalendarRequest;
-import com.project.springboot.plantidati.exception.EntityNotFoundException;
-import com.project.springboot.plantidati.model.Plant;
+import com.project.springboot.plantidati.mapper.RetrieveProfileCalendarsMapper;
+import com.project.springboot.plantidati.model.Calendar;
 import com.project.springboot.plantidati.model.User;
 import com.project.springboot.plantidati.model.Variety;
+import com.project.springboot.plantidati.model.dto.RetrieveProfileCalendarsDTO;
 import com.project.springboot.plantidati.service.CalendarService;
-import com.project.springboot.plantidati.service.PlantService;
 import com.project.springboot.plantidati.service.UserService;
+import com.project.springboot.plantidati.service.VarietyService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CalendarRestControllerTest {
@@ -31,59 +34,71 @@ public class CalendarRestControllerTest {
     private CalendarService calendarService;
 
     @Mock
-    private PlantService plantService;
+    private VarietyService varietyService;
+
+    @Mock
+    private RetrieveProfileCalendarsMapper retrieveProfileCalendarsMapper;
 
     @InjectMocks
-    private CalendarRestController controller;
-
+    private CalendarRestController calendarRestController;
 
     @Test
-    public void createCalendar_validRequest_createsCalendar() {
-        // Arrange
-        when(userService.findUserById(1)).thenReturn(Optional.of(new User()));
-        when(plantService.findById(1)).thenReturn(Optional.of(new Plant()));
-
+    void testCreateCalendar() {
         CreateCalendarRequest request = new CreateCalendarRequest();
         request.setUserId(1);
-        request.setVarietyId(1);
         request.setTitle("Test Title");
         request.setLocation("Test Location");
+        request.setVarietyId(1);
 
-        // Act
-        controller.createCalendar(request);
+        User user = new User();
+        Variety variety = new Variety();
 
-        // Assert
-        verify(calendarService, times(1)).createCalendar(any(User.class), eq("Sample Title"), eq("Sample Location"), any(Variety.class));
+        when(userService.findUserById(request.getUserId())).thenReturn(Optional.of(user));
+        when(varietyService.findById(request.getVarietyId())).thenReturn(Optional.of(variety));
+
+        ResponseEntity<Void> response = calendarRestController.createCalendar(request);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    public void createCalendar_userNotFound_throwsException() {
-        // Arrange
-        when(userService.findUserById(1)).thenReturn(Optional.empty());
+    void testGetUserCalendars_UserNotFound() {
+        int userId = 1;
 
-        CreateCalendarRequest request = new CreateCalendarRequest();
-        request.setUserId(1);
-        request.setVarietyId(1);
+        when(userService.findUserById(userId)).thenReturn(Optional.empty());
 
-        // Act & Assert
-        Exception exception = assertThrows(EntityNotFoundException.class, () -> controller.createCalendar(request));
-        assertEquals("User with id 1 not found", exception.getMessage());
+        ResponseEntity<List<RetrieveProfileCalendarsDTO>> response = calendarRestController.getUserCalendars(userId);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
-    public void createCalendar_plantNotFound_throwsException() {
-        // Arrange
-        when(userService.findUserById(1)).thenReturn(Optional.of(new User()));
-        when(plantService.findById(1)).thenReturn(Optional.empty());
+    void testGetUserCalendars_NoCalendars() {
+        int userId = 1;
+        User user = new User();
 
-        CreateCalendarRequest request = new CreateCalendarRequest();
-        request.setUserId(1);
-        request.setVarietyId(1);
+        when(userService.findUserById(userId)).thenReturn(Optional.of(user));
+        when(calendarService.getAllCalendarsByUserId(userId)).thenReturn(Collections.emptyList());
 
-        // Act & Assert
-        Exception exception = assertThrows(EntityNotFoundException.class, () -> controller.createCalendar(request));
-        assertEquals("Plant with id 1 not found", exception.getMessage());
+        ResponseEntity<List<RetrieveProfileCalendarsDTO>> response = calendarRestController.getUserCalendars(userId);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
+    @Test
+    void testGetUserCalendars() {
+        int userId = 1;
+        User user = new User();
+        Calendar calendar = new Calendar();
+        RetrieveProfileCalendarsDTO retrieveProfileCalendarsDTO = new RetrieveProfileCalendarsDTO();
 
+        when(userService.findUserById(userId)).thenReturn(Optional.of(user));
+        when(calendarService.getAllCalendarsByUserId(userId)).thenReturn(Collections.singletonList(calendar));
+        when(retrieveProfileCalendarsMapper.toDTO(calendar)).thenReturn(retrieveProfileCalendarsDTO);
+
+        ResponseEntity<List<RetrieveProfileCalendarsDTO>> response = calendarRestController.getUserCalendars(userId);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+    }
 }

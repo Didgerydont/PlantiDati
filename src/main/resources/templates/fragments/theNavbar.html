@@ -5,7 +5,7 @@
 <body>
 
 <!-- The navbar -->
-<div th:fragment="theNavbar">
+<div class="container-fluid" th:fragment="theNavbar">
     <!-- Navbar Start -->
     <div class="container-fluid bg-white sticky-top">
         <nav class="navbar navbar-expand-lg bg-success navbar-light py-2 py-lg-0">
@@ -21,13 +21,11 @@
                     <!-- User is logged out -->
                     <a th:href="@{/registrationpage}" class="nav-item nav-link"
                        sec:authorize="isAnonymous()">Register!</a>
-                    <!-- User is logged in -->
-                    <a th:href="@{/forum}" class="nav-item nav-link" sec:authorize="isAuthenticated()">Forum</a>
+
 
                     <!-- Common links -->
                     <a th:href="@{/calendars}" class="nav-item nav-link">Calendars</a>
                     <a th:href="@{/plantidata}" class="nav-item nav-link">PlantiData</a>
-                    <a th:href="@{/hobbycorner}" class="nav-item nav-link">Hobby Corner</a>
 
                     <!-- Login/Logout -->
                     <a th:href="@{/login}" class="nav-item nav-link" sec:authorize="isAnonymous()">Sign in</a>

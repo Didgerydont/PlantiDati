@@ -10,8 +10,10 @@ fetch('/plant/getAll')
             plantSelect.add(option);
         });
 
+        // set the plantId to 1 to match Asparagus right off the bat
+        let selectedPlantId = 1;
         plantSelect.addEventListener('change', function(event) {
-            let selectedPlantId = this.value;
+            selectedPlantId = this.value;
             localStorage.setItem('plantId', selectedPlantId);
             fetchAndPopulateVarieties(selectedPlantId);  // Refresh varieties on plant change
         });

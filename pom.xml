@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>Test</scope>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -69,13 +69,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- Jasypt for simple encryption and salt -->
-        <dependency>
-            <groupId>org.jasypt</groupId>
-            <artifactId>jasypt</artifactId>
-            <version>1.9.3</version>
-        </dependency>
+        
 
         <!-- Jakarta Bean Validation API  -->
         <dependency>
