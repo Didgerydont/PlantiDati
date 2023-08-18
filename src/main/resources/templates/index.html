@@ -6,7 +6,7 @@
 <!-- Navbar -->
 <div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 <div class="container-fluid d-flex align-items-center justify-content-center">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col text-center">
             <h1>Planti Dati</h1>
             <p>Outstanding in our field</p>
@@ -17,19 +17,48 @@
     <div class="text-center">
         <h2>Why Planti Dati?</h2>
     </div>
-    <div class="col-md-4">
-        <!--Will need to take a picture of the calendar -->
-        <!--        <img src="" alt="Personalized Calendar" class="img-fluid">-->
+</div>
+<!-- Personalized Calendar -->
+<div class="row mt-5">
+    <div class="col-12 col-md-6 text-center mt-2">
+        <img src="" alt="Personalized Calendar" class="img-fluid index-img">
+    </div>
+    <div class="col-12 col-md-6 text-center mt-2">
         <h4>Personalized Calendar</h4>
         <p>Track your planting schedule, growth progress, and harvest time.</p>
     </div>
-    <div class="col-md-4">
-        <img src="@{/images/growth.jpg}" alt="Growth Insights" class="img-fluid">
+</div>
+
+<!-- Growth Insights -->
+<div class="row mt-5">
+    <div class="col-12 col-md-6 text-center mt-2 order-md-2">
+        <img th:src="@{/images/growth.jpg}" alt="Growth Insights" class="img-fluid index-img">
+    </div>
+    <div class="col-12 col-md-6 text-center mt-2 order-md-1">
         <h4>Growth Insights</h4>
         <p>Gain insights on optimal growing conditions for different vegetables.</p>
     </div>
-    <div class="row mt-5">
+</div>
 
+<!-- Sustainability -->
+<div class="row mt-5">
+    <div class="col-12 col-md-6 text-center mt-2">
+        <img th:src="@{/images/sustainability.jpg}" alt="Sustainability" class="img-fluid index-img">
+    </div>
+    <div class="col-12 col-md-6 text-center mt-2">
+        <h4>Sustainability</h4>
+        <p>Practice and learn about sustainable gardening methods</p>
+    </div>
+</div>
+
+<!-- Communal Learning -->
+<div class="row mt-5">
+    <div class="col-12 col-md-6 text-center mt-2 order-md-2">
+        <img th:src="@{/images/communal-learning.jpg}" alt="Communal Learning" class="img-fluid index-img">
+    </div>
+    <div class="col-12 col-md-6 text-center mt-2 order-md-1">
+        <h4>Communal Learning</h4>
+        <p>Connect with a community passionate about growing healthy vegetables and sharing knowledge.</p>
     </div>
 </div>
 
