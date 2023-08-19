@@ -8,15 +8,17 @@
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top">
         <nav class="navbar navbar-expand-md navbar-light py-2 py-lg-0 bg-opacity-25 larger-font">
-            <a th:href="@{/index}" class="navbar-brand">
-                <img class="img-fluid" th:src="@{/images/logo.png}" alt="Logo">
-            </a>
-            <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="d-flex w-100 justify-content-center">
+                <a th:href="@{/index}" class="navbar-brand mb-2 mb-md-0">
+                    <img class="img-fluid" th:src="@{/images/logo.png}" alt="Logo">
+                </a>
+                <button type="button" class="navbar-toggler ms-auto" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto">
+                <div class="navbar-nav ms-auto text-end">
                     <!-- User is logged out -->
                     <a th:href="@{/registrationpage}" class="nav-item nav-link mx-2"
                        sec:authorize="isAnonymous()">Register!</a>
@@ -24,18 +26,20 @@
                     <!-- Common links -->
                     <a th:href="@{/calendars}" class="nav-item nav-link mx-2">Calendars</a>
                     <a th:href="@{/plantidata}" class="nav-item nav-link mx-2">PlantiData</a>
-                    <a th:href="@{/about}" class="nav-item nav-link mx-2">About Us</a>
-
+                    <a th:href="@{/about}" class="nav-item nav-link mx-2 nav-link-desktop">About Us</a>
 
                     <!-- Login/Logout -->
-                    <a th:href="@{/login}" class="nav-item nav-link mx-2" sec:authorize="isAnonymous()">Sign in</a>
+                    <a th:href="@{/login}" class="nav-item nav-link mx-2 nav-link-desktop"
+                       sec:authorize="isAnonymous()">Sign in</a>
                     <a th:href="@{/profile}" class="nav-item nav-link mx-2"
                        sec:authorize="isAuthenticated()">Profile</a>
                 </div>
             </div>
+
         </nav>
     </div>
     <!-- Navbar End -->
 </div>
+
 </body>
 </html>

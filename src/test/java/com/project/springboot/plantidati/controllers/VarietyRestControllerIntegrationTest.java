@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
-public class VarietyRestControllerTest {
+public class VarietyRestControllerIntegrationTest {
 
     @InjectMocks
     private VarietyRestController varietyRestController;

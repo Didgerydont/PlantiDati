@@ -22,21 +22,21 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ProfileControllerTest {
+public class ProfileControllerIntegrationTest {
 
-    // Creates a mock instance of JwtService
+    // Mock instances
     @Mock
     private JwtService jwtService;
 
-    // Create a mock instance of UserDetailsService
+
     @Mock
     private UserDetailsService userDetailsService;
 
-    // Creates a mock instance of UserRepository
+
     @Mock
     private UserRepository userRepository;
 
-    // Creates a mock instance of PasswordEncoder
+
     @Mock
     private PasswordEncoder passwordEncoder;
 
@@ -46,7 +46,6 @@ public class ProfileControllerTest {
 
     @BeforeEach
     public void setUp() {
-        // Initializes fields annotated with Mockito annotations
         MockitoAnnotations.openMocks(this);
     }
 

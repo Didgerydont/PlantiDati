@@ -5,7 +5,7 @@
 <body>
 <!-- Navbar -->
 <div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
-<div class="container-fluid d-flex align-items-center justify-content-center">
+<div class="container d-flex align-items-center justify-content-center">
     <div class="row mt-5">
         <div class="col text-center">
             <h1>Planti Dati</h1>
@@ -13,74 +13,85 @@
         </div>
     </div>
 </div>
-<div class="row mt-5">
-    <div class="text-center">
-        <h2>Why Planti Dati?</h2>
+<div class="container">
+    <div class="row mt-5">
+        <div class="text-center">
+            <h2>Why Planti Dati?</h2>
+        </div>
     </div>
-</div>
-<!-- Personalized Calendar -->
-<div class="row mt-5">
-    <div class="col-12 col-md-6 text-center mt-2">
-        <img src="" alt="Personalized Calendar" class="img-fluid index-img">
-    </div>
-    <div class="col-12 col-md-6 text-center mt-2">
-        <h4>Personalized Calendar</h4>
-        <p>Track your planting schedule, growth progress, and harvest time.</p>
-    </div>
-</div>
-
-<!-- Growth Insights -->
-<div class="row mt-5">
-    <div class="col-12 col-md-6 text-center mt-2 order-md-2">
-        <img th:src="@{/images/growth.jpg}" alt="Growth Insights" class="img-fluid index-img">
-    </div>
-    <div class="col-12 col-md-6 text-center mt-2 order-md-1">
-        <h4>Growth Insights</h4>
-        <p>Gain insights on optimal growing conditions for different vegetables.</p>
-    </div>
-</div>
-
-<!-- Sustainability -->
-<div class="row mt-5">
-    <div class="col-12 col-md-6 text-center mt-2">
-        <img th:src="@{/images/sustainability.jpg}" alt="Sustainability" class="img-fluid index-img">
-    </div>
-    <div class="col-12 col-md-6 text-center mt-2">
-        <h4>Sustainability</h4>
-        <p>Practice and learn about sustainable gardening methods</p>
-    </div>
-</div>
-
-<!-- Communal Learning -->
-<div class="row mt-5">
-    <div class="col-12 col-md-6 text-center mt-2 order-md-2">
-        <img th:src="@{/images/communal-learning.jpg}" alt="Communal Learning" class="img-fluid index-img">
-    </div>
-    <div class="col-12 col-md-6 text-center mt-2 order-md-1">
-        <h4>Communal Learning</h4>
-        <p>Connect with a community passionate about growing healthy vegetables and sharing knowledge.</p>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Personalized Calendar -->
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 text-center mt-2">
+            <img th:src="@{/images/calendar-index.jpg}" alt="Personalized Calendar" class="img-fluid index-img">
+        </div>
+        <div class="col-12 col-md-6 text-center mt-2 d-flex align-items-center">
+            <div>
+                <h4>Personalized Calendar</h4>
+                <p>Track your planting schedule, growth progress, and harvest time. With our platform's interactive
+                    features, both seasoned horticulturists and novices can maintain a detailed log of their plant's
+                    journey. Personalized calendars enable growers to share their unique experiences, shedding light on
+                    how plants flourish in diverse environments and conditions. This collective knowledge not only
+                    enhances individual gardens but contributes to our community's expanding database.</p>
             </div>
-            <div class="modal-body">
-                <p>Welcome! </p>
+        </div>
+    </div>
+
+    <!-- Growth Insights -->
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 text-center mt-2 order-md-2">
+            <img th:src="@{/images/growth.jpg}" alt="Growth Insights" class="img-fluid index-img">
+        </div>
+        <div class="col-12 col-md-6 text-center mt-2 order-md-1 d-flex align-items-center">
+            <div>
+                <h4>Growth Insights</h4>
+                <p>Gain insights on optimal growing conditions for different vegetables.
+                    Using our extensive, user-contributed database, gardeners can access detailed information on a
+                    plethora of plant varieties. This resource empowers individuals to make informed decisions tailored
+                    to their specific needs and environments. Furthermore, these insights contribute directly to
+                    addressing challenges in the Irish horticulture sector, from climate change effects to the
+                    complexities of sustainable farming.</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Sign Up</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sign In</button>
+        </div>
+    </div>
+
+    <!-- Sustainability -->
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 text-center mt-2">
+            <img th:src="@{/images/sustainability.jpg}" alt="Sustainability" class="img-fluid index-img">
+        </div>
+        <div class="col-12 col-md-6 text-center mt-2 d-flex align-items-center">
+            <div>
+                <h4>Sustainability</h4>
+                <p>Practice and learn about sustainable gardening methods. As the horticulture sector grapples with the
+                    pressing need for sustainable practices, our platform offers data-driven techniques to tackle these
+                    challenges head-on. From reducing pesticide use to minimizing non-renewable resources, users can
+                    find guidance and knowledge shared by a community deeply invested in environmental, economic, and
+                    social sustainability.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Communal Learning -->
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 text-center mt-2 order-md-2">
+            <img th:src="@{/images/communal-learning.jpg}" alt="Communal Learning" class="img-fluid index-img">
+        </div>
+        <div class="col-12 col-md-6 text-center mt-2 order-md-1 d-flex align-items-center">
+            <div>
+                <h4>Communal Learning</h4>
+                <p>Connect with a community passionate about growing healthy vegetables and sharing knowledge. Beyond
+                    merely being a resource for plant insights, our platform is a meeting ground for enthusiasts and
+                    experts alike. Together, users can transform the face of Irish horticulture, shifting from isolated
+                    gardening endeavors to a cooperative network that emphasizes collaboration, best practices, and
+                    sustainable growth. This communal effort stands to not only boost individual gardens but enhance the
+                    broader health and economic value of Ireland's horticulture sector.</p>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container mb-5"></div>
+
 
 <div th:replace="~{fragments/thefooter :: thefooter}"></div>
 </body>

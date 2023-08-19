@@ -8,11 +8,12 @@
 <div th:replace="~{fragments/theNavbar :: theNavbar}"></div>
 
 <!-- Hero Section -->
-<div class="container-fluid bg-light py-5">
+<div class="container-fluid py-5">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
             <h1>About Planti Dati</h1>
-            <p class="lead">Welcome to our unique gardening platform, the definitive destination for green thumbs in
+            <p class="lead mt-5">Welcome to our unique gardening platform, the definitive destination for green thumbs
+                in
                 Ireland.
             </p>
         </div>
@@ -24,18 +25,19 @@
     <div class="row">
         <div class="col-lg-6">
             <h2>Our Mission</h2>
-            <p>This interactive, user-driven platform is designed to bridge the gap between experienced horticulturists
-                and those just beginning their journey in the world of plants.
+            <p class="mt-5">This interactive, user-driven platform is designed to bridge the gap between experienced
+                horticulturists and those just beginning their journey in the world of plants.
             </p>
             <p>Our platform stands as the first of its kind to harness the voluntary contributions of growers from
                 various locations, offering a comprehensive repository of invaluable plant-growing knowledge and
                 insights.
             </p>
         </div>
-        <!-- Will need to find suitable image for below. -->
-        <!--        <div class="col-lg-6">-->
-        <!--            <img src="" alt="Image depicting the mission" class="img-fluid">-->
-        <!--        </div>-->
+
+        <div class="col-lg-6">
+            <img th:src="@{/images/mission.png}" alt="Image depicting the mission" class="img-fluid">
+        </div>
+
     </div>
 </div>
 
@@ -55,21 +57,22 @@
         </div>
         <div class="col-lg-6 order-lg-1">
             <!-- Add an image here that represents the features -->
-            <img src="path_to_feature_image" alt="Image depicting the features" class="img-fluid">
+            <img src="" alt="Image depicting the features" class="img-fluid">
         </div>
     </div>
 </div>
 
 <!-- Join Us -->
 <div class="container-fluid bg-light py-5">
-    <div class="row">
+    <div class="row mt-5 mb-5">
         <div class="col-lg-8 offset-lg-2 text-center">
             <h2>Join Our Growing Family</h2>
-            <p>As a project rooted in community and the passion for gardening, we aim to continually evolve and expand
+            <p class="mt-5">As a project rooted in community and the passion for gardening, we aim to continually evolve
+                and expand
                 based on our user's needs. We invite you to join us in this green endeavour, whether you're a seasoned
                 horticulturist, a budding gardener, or simply curious about the world of plants.</p>
             <!-- Using Bootstrap classes to style an anchor like a button -->
-            <a href="${/registrationpage}" class="btn btn-primary">Join us!</a>
+            <a href="${/registrationpage}" class="mt-5 btn btn-primary">Join us!</a>
 
         </div>
     </div>

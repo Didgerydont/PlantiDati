@@ -76,17 +76,18 @@
             </div>
         </div>
     </div>
+</div>
 
+<!-- Todo - figure out better system for change password -->
 
-    <!-- Todo - figure out better system for change password -->
-
-
-    <!-- Calendars-->
-    <h2 class="mt-5">Your Calendars</h2>
-    <a th:href="@{calendarCreate}">Create new Calendar?</a>
-    <!-- Let Javascript display the calendars-->
-    <div id="calendarsContainer"></div>
-
+<div class="container mt-5">
+    <div class="text-center">
+        <!-- Calendars-->
+        <h2 class="mt-5">Your Calendars</h2>
+        <a th:href="@{calendarCreate}" class="btn btn-primary mt-5">Create new Calendar?</a>
+        <!-- Let Javascript handlr displaying the calendars-->
+        <div class="mt-5" id="calendarsContainer"></div>
+    </div>
 </div>
 
 <!-- Footer -->
